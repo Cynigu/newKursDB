@@ -1,0 +1,41 @@
+﻿<Window x:Class="kurs.view.EditAddUOT"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kurs.view"
+        mc:Ignorable="d"
+        Title="Изменить товарные операции" Height="130.8" Width="509.867" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="15*"/>
+
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" 
+                   Text="НП :" VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap"
+                   Text="Кол-во :" VerticalAlignment="Center"/>
+        <Button IsDefault="True" Click="Accept_Click" 
+            Content="OK" Grid.Column="3" HorizontalAlignment="Right"  Grid.Row="6" VerticalAlignment="Center" Width="75"/>
+        <Button IsCancel="True"
+            Content="Отмена" Grid.Column="4" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="75"/>
+
+        <TextBox x:Name="Period" Grid.Column="4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                 PreviewTextInput="Period_PreviewTextInput"
+                 Text="{Binding  Quantity}" VerticalAlignment="Center" Width="120" Grid.Row="1" />
+        <ComboBox ItemsSource="{Binding NP}" x:Name="Name1"
+            DisplayMemberPath ="{Binding StrId}" IsEnabled="{Binding IsAddEnable}"
+            SelectedItem="{Binding SelectedNP}"
+            Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+    </Grid>
+</Window>

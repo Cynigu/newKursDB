@@ -1,0 +1,39 @@
+﻿<Window x:Class="kurs.view.EditKom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kurs.view"
+        mc:Ignorable="d"
+         Title="Изменить Компоненты" Height="139.867" Width="442.133" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="25*"/>
+
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="ID НП:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Кол-во:" VerticalAlignment="Center"/>
+        <Button IsDefault="True" Click="Accept_Click" 
+            Content="OK" Grid.Column="2" HorizontalAlignment="Right"  Grid.Row="2" VerticalAlignment="Center" Width="75"/>
+        <Button IsCancel="True"
+            Content="Отмена" Grid.Column="4" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Center" Width="75"/>
+        <ComboBox ItemsSource="{Binding NP}" x:Name="ComboBox1"
+                  DisplayMemberPath ="id_НП"
+                  SelectedItem="{Binding SelectedNP}"
+            Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="UnitM" Grid.Column="4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                PreviewTextInput="Period_PreviewTextInput"
+                 Text="{Binding Quantity}" VerticalAlignment="Center" Width="120" Grid.Row="1" />
+    </Grid>
+</Window>

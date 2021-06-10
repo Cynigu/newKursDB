@@ -1,0 +1,56 @@
+﻿<Window x:Class="kurs.view.Tables"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kurs.view"
+        mc:Ignorable="d"
+        Title="Таблицы" Height="273.6" Width="554" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="26*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        <Button Command="{Binding OpenWindowNP}" 
+            Content="Номенклатурные позиции" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+        <Button Command="{Binding OpenWindowCP}" 
+            Content="Спецификация" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"  />
+        <Button Command="{Binding OpenWindowMK}" 
+            Content="Маршрутная карта" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  />
+        <Button Command="{Binding OpenWindowPZ}" 
+            Content="Производственный заказ" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"   />
+        <Button  Command="{Binding OpenWindowCklad}"  
+            Content="Склады" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"  />
+        <Button Command="{Binding OpenWindowZapas}" 
+            Content="Запас" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"   />
+        <!--<Button Command="{Binding OpenWindowUchtOperations}" 
+            Content="Товарные операции" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center"   />-->
+        <!--<Button Command="{Binding OpenWindowDSpisania}"
+            Content="Документы списания" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center"  />-->
+        <Button Command="{Binding OpenWindowDRealis}" 
+            Content="Документы реализации" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"  />
+        <Button Command="{Binding OpenWindowDPost}"
+            Content="Документы поступления" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"   />
+        <!--<Button Command="{Binding OpenWindowDGot}"
+            Content="Документы выхода готовой продукции" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"   />-->
+        <!--<Button Command="{Binding OpenWindowUchtOperationsPower}"
+            Content="Учтенные операции (мощность)" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"   />-->
+        <Button Command="{Binding OpenWindowRC}"
+            Content="Рабочий центр" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center"  />
+
+    </Grid>
+</Window>

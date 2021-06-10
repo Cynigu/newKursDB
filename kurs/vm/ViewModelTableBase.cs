@@ -65,7 +65,7 @@ namespace kurs.vm
         {
             _SelectedCommandText = SelectedCommandText;
 
-            string connect = "SERVER = localhost;Database=kursdb;UID=root; Password=root;  convert zero datetime=True; ";
+            string connect = "SERVER = localhost;Database=гардероб;UID=root; Password=root;  convert zero datetime=True; ";
             
             VisibilityOpen = new Visibility();
             VisibilityEditAddDelete = new Visibility();

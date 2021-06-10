@@ -174,7 +174,6 @@
     <Compile Include="vm\ViewModelEditNP.cs" />
     <Compile Include="vm\ViewModelEditKom.cs" />
     <Compile Include="vm\ViewModelEditUOM.cs" />
-    <Compile Include="vm\ViewModelMenuRoles.cs" />
     <Compile Include="vm\ViewModelEditRC.cs" />
     <Compile Include="vm\ViewModelEditPZ.cs" />
     <Compile Include="vm\ViewModelTableBase.cs" />
@@ -207,16 +206,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="view\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="view\WindowUniversalTable.xaml">

@@ -176,7 +176,11 @@
     <Compile Include="vm\ViewModelEditUOM.cs" />
     <Compile Include="vm\ViewModelEditRC.cs" />
     <Compile Include="vm\ViewModelEditPZ.cs" />
-    <Compile Include="vm\ViewModelTablePZBase.cs" />
+    <Compile Include="vm\ViewModelTableBase.cs" />
+    <Compile Include="vm\ViewModelTableBaseWithEdit.cs" />
+    <Compile Include="vm\ViewModelTableBaseWithEditAndOpen.cs" />
+    <Compile Include="vm\ViewModelTableBaseWithOpen.cs" />
+    <Compile Include="vm\ViewModelTableBaseForPZ.cs" />
     <Compile Include="vm\ViewModelTables.cs" />
     <Page Include="view\EditAddUOT.xaml">
       <SubType>Designer</SubType>

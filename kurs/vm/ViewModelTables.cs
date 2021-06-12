@@ -28,7 +28,7 @@ namespace kurs.vm
                   {
                       string select = "select * from нп";
                       
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "НП";
                       vm.VisibilityEditAddDelete = Visibility.Visible;
                       vm.Edit = () => 
@@ -73,7 +73,7 @@ namespace kurs.vm
                   (_openWindowRC = new RelayCommand(obj =>
                   {
                       string select = "select * from рц";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "РЦ";
                       vm.VisibilityEditAddDelete = Visibility.Visible;
                       vm.Edit = () =>
@@ -120,7 +120,7 @@ namespace kurs.vm
                   (_openWindowCklad = new RelayCommand(obj =>
                   {
                       string select = "select * from склад";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Склады";
                       WindowUniversalTable view = new WindowUniversalTable() { DataContext = vm };
                       view.Show();
@@ -137,7 +137,7 @@ namespace kurs.vm
                   (_openWindowMK = new RelayCommand(obj =>
                   {
                       string select = "select * from мк";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Маршрутные карты";
                       vm.VisibilityOpen = Visibility.Visible;
                       vm.Open = () =>
@@ -147,7 +147,7 @@ namespace kurs.vm
                           string _SelectedCommandText = "select id_Операция,Время_обработки," +
                           " Время_перехода, Время_наладки, РЦ, Описание" +
                           " from операция Where id_Маршрута =" + idMK + ";";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           vmN.TableName = "Состав маршрутной карты №" + idMK;
                           WindowUniversalTable vinOperations = new WindowUniversalTable() { DataContext = vmN };
                           vinOperations.Show();
@@ -167,7 +167,7 @@ namespace kurs.vm
                   (_openWindowZapas = new RelayCommand(obj =>
                   {
                       string select = "select * from запас";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Запас";
                       WindowUniversalTable view = new WindowUniversalTable() { DataContext = vm };
                       view.Show();
@@ -184,7 +184,7 @@ namespace kurs.vm
                   (_openWindowCP = new RelayCommand(obj =>
                   {
                       string select = "select * from спецификация";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Спецификация";
                       vm.VisibilityOpen = Visibility.Visible;
                       vm.Open = () =>
@@ -195,7 +195,7 @@ namespace kurs.vm
                           " from компонент;";
                           //string _SelectedCommandText = "select Позиция, НП, `Кол-во`" +
                           //" from компонент Where Спецификация =" + idCP + ";";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           vmN.DT.DefaultView.RowFilter = "Спецификация =" + idCP;
                           vmN.VisibilityEditAddDelete = Visibility.Visible;
                           vmN.Edit = () =>
@@ -276,7 +276,7 @@ namespace kurs.vm
                   (_openWindowPZ = new RelayCommand(obj =>
                   {
                       string select = "select * from пз";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Производственный заказ";
                       //vm.VisibilityOpen = Visibility.Visible;
                       //vm.Open = () =>
@@ -292,7 +292,7 @@ namespace kurs.vm
                           }
                           int id = int.Parse(vm.SelectedRow["id_ПЗ"].ToString());
                           string _SelectedCommandText = "select * from товарные_операции_выходгп";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           vmN.DT.DefaultView.RowFilter = "id_ПЗ =" + id;
                           vmN.TableName = "Товарные операции (выход ГП) ПЗ №" + id;
                           
@@ -347,7 +347,7 @@ namespace kurs.vm
                           }
                           int id = int.Parse(vm.SelectedRow["id_ПЗ"].ToString());
                           string _SelectedCommandText = "select * from учтенные_операции_мощности;";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           vmN.DT.DefaultView.RowFilter = "id_ПЗ =" + id;
                           vmN.TableName = "Учтенные операции (мощности) ПЗ №" + id;
                          
@@ -406,7 +406,7 @@ namespace kurs.vm
                           int id = int.Parse(vm.SelectedRow["id_ПЗ"].ToString());
                           string _SelectedCommandText = "select *" +
                           " from товарные_операции_потребление;";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           
                           vmN.DT.DefaultView.RowFilter = "id_ПЗ =" + id;
                           vmN.TableName = "Товарные операции (потребление) ПЗ №" + id;
@@ -503,7 +503,7 @@ namespace kurs.vm
                   (_openWindowDRealis = new RelayCommand(obj =>
                   {
                       string select = "select * from документ_реализации";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Документы реализации";
                       vm.VisibilityOpen = Visibility.Visible;
                       vm.Open = () =>
@@ -511,7 +511,7 @@ namespace kurs.vm
                           if (vm.SelectedRow == null) return;
                           int id = int.Parse(vm.SelectedRow["id_Документ"].ToString());
                           string _SelectedCommandText = "select НП, `Кол-во` from реализация Where Id_Документа =" + id + ";";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           vmN.TableName = "Состав документы реализации №" + id;
                           WindowUniversalTable vinOperations = new WindowUniversalTable() { DataContext = vmN };
                           vinOperations.Show();
@@ -531,7 +531,7 @@ namespace kurs.vm
                   (_openWindowDPost = new RelayCommand(obj =>
                   {
                       string select = "select * from документ_поступления";
-                      ViewModelTablePZBase vm = new ViewModelTablePZBase(select);
+                      ViewModelTableBaseForPZ vm = new ViewModelTableBaseForPZ(select);
                       vm.TableName = "Документы поступления";
                       vm.VisibilityOpen = Visibility.Visible;
                       vm.Open = () =>
@@ -539,7 +539,7 @@ namespace kurs.vm
                           if (vm.SelectedRow == null) return;
                           int id = int.Parse(vm.SelectedRow["id_Документ"].ToString());
                           string _SelectedCommandText = "select НП, `Кол-во` from поступление Where Id_Документа =" + id + ";";
-                          ViewModelTablePZBase vmN = new ViewModelTablePZBase(_SelectedCommandText);
+                          ViewModelTableBaseForPZ vmN = new ViewModelTableBaseForPZ(_SelectedCommandText);
                           vm.TableName = "Состав документа поступления №" + id;
                           WindowUniversalTable vinOperations = new WindowUniversalTable() { DataContext = vmN };
                           vinOperations.Show();

@@ -11,7 +11,7 @@ namespace kurs.service
     class DBFunction
     {
         private readonly MySqlConnection _connection;
-        public DBFunction(string connect = "SERVER = localhost;Database=kursdb;UID=root; Password=root;  convert zero datetime=True; ")
+        public DBFunction(string connect = "SERVER = localhost;Database=гардероб;UID=root; Password=root;  convert zero datetime=True; ")
         {
             _connection = new MySqlConnection(connect);
 

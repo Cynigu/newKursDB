@@ -19,7 +19,7 @@ using System.Windows.Input;
 
 namespace kurs.vm
 {
-    public class ViewModelTableBase : ReactiveObject
+    public class ViewModelTablePZBase : ReactiveObject
     {
         #region Readonly
         public readonly DB _dB;
@@ -29,7 +29,7 @@ namespace kurs.vm
         #endregion
 
         #region Constructors
-        public ViewModelTableBase(string SelectedCommandText, bool t)
+        public ViewModelTablePZBase(string SelectedCommandText, bool t)
         {
             _SelectedCommandText = SelectedCommandText;
 
@@ -47,7 +47,7 @@ namespace kurs.vm
             _dB.FillTable(); // заполняем таблицу 
         }
 
-        public ViewModelTableBase(DataTable dt)
+        public ViewModelTablePZBase(DataTable dt)
         {
             //string connect = "SERVER = localhost;Database=kursdb;UID=root; Password=root;  convert zero datetime=True; ";
             //_dB = new DB(connect);
@@ -61,7 +61,7 @@ namespace kurs.vm
             //_dB.FillTable(); // заполняем таблицу 
         }
 
-        public ViewModelTableBase(string SelectedCommandText)
+        public ViewModelTablePZBase(string SelectedCommandText)
         {
             _SelectedCommandText = SelectedCommandText;
 

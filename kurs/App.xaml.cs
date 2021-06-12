@@ -38,7 +38,7 @@ namespace kurs
         }
         void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Иселючение");
+            MessageBox.Show("Исключение");
             logger.Fatal(e.Exception.StackTrace + " " + "Исключение: "
                 + e.Exception.GetType().ToString() + " " + e.Exception.Message);
 

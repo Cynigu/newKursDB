@@ -6,6 +6,31 @@
         xmlns:local="clr-namespace:kurs.view"
         mc:Ignorable="d"
         Title="{Binding TableName}" Height="400" Width="1084.4" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Button.Background" Value= "#FF374785" />
+            <Setter Property="Button.Foreground" Value="#FFFFF8F0"/>
+            <Setter Property="Button.BorderBrush" Value= "#FF151537" />
+            <Setter Property="Button.Height" Value= "35" />
+            <Setter Property="Button.FontFamily" Value="Arial"/>
+            <Setter Property="Button.FontSize" Value="14"  />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF6B7EC8" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FF7784B6" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Grid" >
+            <Setter Property="Grid.Background" Value="#FF1B2646"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="DataGrid.Background" Value="#FF7668A5"/>
+            <Setter Property="DataGrid.BorderBrush" Value="#FF45396E"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="22*"/>

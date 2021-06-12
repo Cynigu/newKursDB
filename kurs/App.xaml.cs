@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using kurs.models;
+using kurs.view;
 using kurs.vm;
 using NLog;
 using System;
@@ -30,10 +31,9 @@ namespace kurs
             var builderBase = new ContainerBuilder();
             builderBase.RegisterType<DB>().As<IDB>();
             builderBase.RegisterType<ViewModelTables>().AsSelf();
-            builderBase.RegisterType<ViewModelMenuRoles>().AsSelf();
             var containerBase = builderBase.Build();
-            var viewmodelBase = containerBase.Resolve<ViewModelMenuRoles>();
-            var viewBase = new MainWindow { DataContext = viewmodelBase };
+            var viewmodelBase = containerBase.Resolve<ViewModelTables>();
+            var viewBase = new Tables { DataContext = viewmodelBase };
             viewBase.Show();
         }
         void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

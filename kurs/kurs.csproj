@@ -137,6 +137,7 @@
     <Compile Include="commands\AsyncCommandBase.cs" />
     <Compile Include="commands\IAsyncCommand.cs" />
     <Compile Include="commands\RelayCommand.cs" />
+    <Compile Include="model\PZmodel.cs" />
     <Compile Include="service\DB.cs" />
     <Compile Include="service\DBFunction.cs" />
     <Compile Include="service\ForComboBox.cs" />
@@ -161,6 +162,21 @@
     </Compile>
     <Compile Include="view\EditUOM.xaml.cs">
       <DependentUpon>EditUOM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControlTableBase.xaml.cs">
+      <DependentUpon>UserControlTableBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControlTableBaseEditOpen.xaml.cs">
+      <DependentUpon>UserControlTableBaseEditOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControlTableBaseOpen.xaml.cs">
+      <DependentUpon>UserControlTableBaseOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControlTableBaseWithEdit.xaml.cs">
+      <DependentUpon>UserControlTableBaseWithEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowPZwithEditAndUO.xaml.cs">
+      <DependentUpon>WindowPZwithEditAndUO.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\WindowUniversalTable.xaml.cs">
       <DependentUpon>WindowUniversalTable.xaml</DependentUpon>
@@ -214,6 +230,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\UserControlTableBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\UserControlTableBaseEditOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\UserControlTableBaseOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\UserControlTableBaseWithEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowPZwithEditAndUO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\WindowUniversalTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

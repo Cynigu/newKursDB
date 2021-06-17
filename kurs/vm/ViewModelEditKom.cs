@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace kurs.vm
 {
-    class ViewModelEditKom : ViewModelEditAddBase
+    class ViewModelEditKom : ReactiveObject
     {
         #region Fields
         private DataTable np;
@@ -62,7 +62,7 @@ namespace kurs.vm
         #endregion
 
         #region methods
-        public override void ChangeRowInTable(DataRow rowForEdit)
+        public  void ChangeRowInTable(DataRow rowForEdit)
         {
             EditData = DateTime.Now;
             rowForEdit["Кол-во"] = Quantity;
@@ -72,7 +72,7 @@ namespace kurs.vm
             }
         }
 
-        public override void CopyRowInWindow(DataRow rowForEdit)
+        public  void CopyRowInWindow(DataRow rowForEdit)
         {
             Quantity = int.Parse(rowForEdit["Кол-во"].ToString());
 

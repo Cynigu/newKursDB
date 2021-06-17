@@ -19,7 +19,7 @@ using System.Windows.Input;
 
 namespace kurs.vm
 {
-    public abstract class ViewModelTableBase : ReactiveObject
+    public abstract class AbstractViewModelTableBase : ReactiveObject
     {
         #region Readonly
         public readonly DB _dB;
@@ -30,14 +30,13 @@ namespace kurs.vm
 
         #region Constructors
 
-        public ViewModelTableBase(string SelectedCommandText)
+        public AbstractViewModelTableBase(string SelectedCommandText, string tablename)
         {
             _SelectedCommandText = SelectedCommandText;
+            TableName = tablename;
 
-            string connect = "SERVER = localhost;Database=гардероб;UID=root; Password=root;  convert zero datetime=True; ";
             DT = new DataTable();
-
-            _dB = new DB(DT, connect);
+            _dB = new DB(DT);
             _dB.AddCommandTable(_SelectedCommandText); // Подключаем таблицу, добавляем комманды
             _dB.FillTable(); // заполняем таблицу 
         }
@@ -77,7 +76,7 @@ namespace kurs.vm
         {
             get { return enavledButtonFroSelectedRow; }
             set { this.RaiseAndSetIfChanged(ref enavledButtonFroSelectedRow, value); }
-        }
+        } // для блокировки возможностей (кнопок), которые не используется без выделенное строки 
 
         public DataRowView SelectedRow
         {
@@ -109,7 +108,6 @@ namespace kurs.vm
         #endregion
 
         #region Methods
-
         public async Task FillAsync()
         {
             DT.Clear();

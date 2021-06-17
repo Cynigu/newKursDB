@@ -17,10 +17,10 @@ namespace kurs.view
     /// <summary>
     /// Логика взаимодействия для WindowPZwithEditAndUO.xaml
     /// </summary>
-    public partial class WindowPZwithEditAndUO : Window
+    public partial class WindowPZ : Window
     {
 
-        public WindowPZwithEditAndUO()
+        public WindowPZ()
         {
             InitializeComponent();
         }

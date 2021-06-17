@@ -1,7 +1,9 @@
 ﻿using kurs.commands;
+using kurs.model;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +12,18 @@ using System.Windows.Input;
 
 namespace kurs.vm
 {
-    abstract class ViewModelTableBaseWithEditAndOpen : ViewModelTableBase
+    public abstract class AbstractViewModelTableBaseWithEdit : AbstractViewModelTableBase
     {
-        protected ViewModelTableBaseWithEditAndOpen(string SelectedCommandText) : base(SelectedCommandText)
+        protected AbstractViewModelTableBaseWithEdit(string SelectedCommandText, string tablename) : base(SelectedCommandText, tablename)
         {
-            VisibilityEditAddDelete = Visibility.Hidden;
-            VisibilityOpen = Visibility.Hidden;
+            InizialistModel();
         }
 
         #region Fields
+
         private Visibility visibilityEditAddDelete;
-        private Visibility visibilityOpen;
+        private ImodelTable modelTable;
+
         #endregion
 
         #region Properties
@@ -29,26 +32,14 @@ namespace kurs.vm
             get { return visibilityEditAddDelete; }
             set { this.RaiseAndSetIfChanged(ref visibilityEditAddDelete, value); ; }
         }
-        public Visibility VisibilityOpen
+        public ImodelTable ModelTable
         {
-            get { return visibilityOpen; }
-            set { this.RaiseAndSetIfChanged(ref visibilityOpen, value); ; }
+            get { return modelTable; }
+            set { this.RaiseAndSetIfChanged(ref modelTable, value); }
         }
         #endregion
 
         #region Commands
-        private RelayCommand _openCommand;
-        public ICommand OpenCommand
-        {
-            get
-            {
-                return _openCommand ??
-                  (_openCommand = new RelayCommand(obj =>
-                  {
-                      Open();
-                  }));
-            }
-        }
         // Добавить новую строку
         private ICommand addCommand;
         public ICommand AddCommand
@@ -71,6 +62,7 @@ namespace kurs.vm
                 return _editCommand ??
                     (_editCommand = new RelayCommand(obj =>
                     {
+                        if (SelectedRow == null) return ;
                         Edit();
                     }));
             }
@@ -85,7 +77,22 @@ namespace kurs.vm
                 return _deleteRowCommand ??
                   (_deleteRowCommand = new RelayCommand(obj =>
                   {
+                      if (SelectedRow == null) return;
                       Delete();
+                  }));
+            }
+        }
+
+        private RelayCommand _exportDataFromRowToEdit;
+        public ICommand ExportDataFromRowToEdit
+        {
+            get
+            {
+                return _exportDataFromRowToEdit ??
+                  (_exportDataFromRowToEdit = new RelayCommand(obj =>
+                  {
+                      if (SelectedRow == null) return;
+                      ExportDataFromRowToEditMet();
                   }));
             }
         }
@@ -120,6 +127,12 @@ namespace kurs.vm
         #endregion
 
         #region Methods
+
+        // абстрактные методы
+
+        public abstract void InizialistModel();
+
+        // Не абстрактные методы
         private void Delete()
         {
             if (SelectedRow == null) return;
@@ -137,9 +150,30 @@ namespace kurs.vm
         {
             DT.RejectChanges();
         }
-        public abstract void Edit();
-        public abstract void Add();
+        public virtual void Edit() 
+        {
 
+            if(!ModelTable.CheckDataForEdit()) return;
+            DataRow temp = SelectedRow.Row;
+            ModelTable.RowFromTableToModel(temp);
+            DataRow newRow = temp;
+            ModelTable.RowFromModelToTable(newRow);
+        }
+        public virtual void Add()
+        {
+            
+            if(!ModelTable.CheckDataForAdd()) return;
+            DataRow newRow = DT.NewRow();
+            ModelTable.RowFromModelToTable(newRow);
+            DT.Rows.Add(newRow);
+        }
+        
+        public void ExportDataFromRowToEditMet()
+        {
+            if (SelectedRow == null) return;
+            DataRow temp = SelectedRow.Row;
+            ModelTable.RowFromTableToModel(temp);
+        }
         public void Update()
         {
             _dB.UpdateBD();
@@ -153,7 +187,6 @@ namespace kurs.vm
             DT.Clear();
             await _dB.FillTableAsync();
         }
-        public abstract void Open();
         #endregion
     }
 }

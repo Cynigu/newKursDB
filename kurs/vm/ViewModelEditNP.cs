@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace kurs.vm
 {
-    public class ViewModelEditNP : ViewModelEditAddBase
+    public class ViewModelEditNP : ReactiveObject
     {
         #region Fields
         private DataTable mk;
@@ -169,7 +169,7 @@ namespace kurs.vm
 
         #endregion
         #region methods
-        public override void ChangeRowInTable(DataRow newRow)
+        public void ChangeRowInTable(DataRow newRow)
         {
             if (SelectedMethodWriteOff != null) {
                 newRow["Метод_списания"] = SelectedMethodWriteOff[0];
@@ -192,7 +192,7 @@ namespace kurs.vm
             }
         }
 
-        public override void CopyRowInWindow(DataRow temp)
+        public void CopyRowInWindow(DataRow temp)
         {
             Name = temp["Наименование"].ToString();
             UnitM = temp["Ед_изм"].ToString();

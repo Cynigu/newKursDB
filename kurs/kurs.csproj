@@ -137,14 +137,16 @@
     <Compile Include="commands\AsyncCommandBase.cs" />
     <Compile Include="commands\IAsyncCommand.cs" />
     <Compile Include="commands\RelayCommand.cs" />
+    <Compile Include="model\ImodelTable.cs" />
     <Compile Include="model\PZmodel.cs" />
+    <Compile Include="model\UOMmodel.cs" />
+    <Compile Include="model\AbstractUOTmodel.cs" />
+    <Compile Include="model\UOTGPmodel.cs" />
+    <Compile Include="model\UOTPOTRmodel.cs" />
     <Compile Include="service\DB.cs" />
     <Compile Include="service\DBFunction.cs" />
     <Compile Include="service\ForComboBox.cs" />
     <Compile Include="service\IDB.cs" />
-    <Compile Include="view\EditAddUOT.xaml.cs">
-      <DependentUpon>EditAddUOT.xaml</DependentUpon>
-    </Compile>
     <Compile Include="view\EditCP.xaml.cs">
       <DependentUpon>EditCP.xaml</DependentUpon>
     </Compile>
@@ -154,14 +156,8 @@
     <Compile Include="view\EditKom.xaml.cs">
       <DependentUpon>EditKom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditPZ.xaml.cs">
-      <DependentUpon>EditPZ.xaml</DependentUpon>
-    </Compile>
     <Compile Include="view\EditRC.xaml.cs">
       <DependentUpon>EditRC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="view\EditUOM.xaml.cs">
-      <DependentUpon>EditUOM.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\UserControlTableBase.xaml.cs">
       <DependentUpon>UserControlTableBase.xaml</DependentUpon>
@@ -175,8 +171,11 @@
     <Compile Include="view\UserControlTableBaseWithEdit.xaml.cs">
       <DependentUpon>UserControlTableBaseWithEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\UserControlTableBaseWithOnlyEdit.xaml.cs">
+      <DependentUpon>UserControlTableBaseWithOnlyEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\WindowPZwithEditAndUO.xaml.cs">
-      <DependentUpon>WindowPZwithEditAndUO.xaml</DependentUpon>
+      <DependentUpon>WindowPZ.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\WindowUniversalTable.xaml.cs">
       <DependentUpon>WindowUniversalTable.xaml</DependentUpon>
@@ -184,24 +183,29 @@
     <Compile Include="view\Tables.xaml.cs">
       <DependentUpon>Tables.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vm\ViewModelEditAddBase.cs" />
-    <Compile Include="vm\ViewModelEditAddUOT.cs" />
+    <Compile Include="view\WindowUOM.xaml.cs">
+      <DependentUpon>WindowUOM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowUOTGP.xaml.cs">
+      <DependentUpon>WindowUOTGP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowUOTPOTR.xaml.cs">
+      <DependentUpon>WindowUOTPOTR.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vm\ViewModelEditCP.cs" />
     <Compile Include="vm\ViewModelEditNP.cs" />
     <Compile Include="vm\ViewModelEditKom.cs" />
-    <Compile Include="vm\ViewModelEditUOM.cs" />
     <Compile Include="vm\ViewModelEditRC.cs" />
-    <Compile Include="vm\ViewModelEditPZ.cs" />
-    <Compile Include="vm\ViewModelTableBase.cs" />
-    <Compile Include="vm\ViewModelTableBaseWithEdit.cs" />
-    <Compile Include="vm\ViewModelTableBaseWithEditAndOpen.cs" />
-    <Compile Include="vm\ViewModelTableBaseWithOpen.cs" />
-    <Compile Include="vm\ViewModelTableBaseForPZ.cs" />
+    <Compile Include="vm\AbstractViewModelTableBase.cs" />
+    <Compile Include="vm\AbstractViewModelTableBaseWithEdit.cs" />
+    <Compile Include="vm\AbstractViewModelTableBaseWithEditAndOpen.cs" />
+    <Compile Include="vm\AbstractViewModelTableBaseWithOpen.cs" />
+    <Compile Include="vm\ViewModelTablePZ.cs" />
     <Compile Include="vm\ViewModelTables.cs" />
-    <Page Include="view\EditAddUOT.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="vm\ViewModelTableUOM.cs" />
+    <Compile Include="vm\AbstractViewModelTableUOT.cs" />
+    <Compile Include="vm\ViewModelTableUOTGP.cs" />
+    <Compile Include="vm\ViewModelTableUOTPOTR.cs" />
     <Page Include="view\EditCP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,15 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\EditPZ.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="view\EditRC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditUOM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,7 +242,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\WindowPZwithEditAndUO.xaml">
+    <Page Include="view\UserControlTableBaseWithOnlyEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowPZ.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,6 +255,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Tables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowUOM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowUOTGP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowUOTPOTR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

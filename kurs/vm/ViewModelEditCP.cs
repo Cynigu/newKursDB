@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace kurs.vm
 {
-    class ViewModelEditCP: ViewModelEditAddBase
+    class ViewModelEditCP: ReactiveObject
     {
         #region Fields
 
@@ -60,7 +60,7 @@ namespace kurs.vm
         #endregion
 
         #region methods
-        public override void ChangeRowInTable(DataRow rowForEdit)
+        public  void ChangeRowInTable(DataRow rowForEdit)
         {
             DateStart = DateTime.Now;
             if (SelectedStatus != null)
@@ -73,7 +73,7 @@ namespace kurs.vm
             }
         }
 
-        public override void CopyRowInWindow(DataRow rowForEdit)
+        public  void CopyRowInWindow(DataRow rowForEdit)
         {
 
             if (!rowForEdit.IsNull("Статус"))

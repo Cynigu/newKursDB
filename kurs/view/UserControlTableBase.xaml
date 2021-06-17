@@ -57,9 +57,8 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="TheDataGrid"  ItemsSource ="{Binding Path=DT, Mode=TwoWay}"
                    SelectedItem="{Binding SelectedRow}"
-                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True"
-                  Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="5"/>
+                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" Grid.RowSpan="11" Grid.ColumnSpan="7"/>
         <Button Command="{Binding FillCommand}"
-            Content="Обновить" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="20" Grid.Row="11" />
+            Content="Обновить" Grid.Column="5" VerticalAlignment="Center" Height="20" Grid.Row="11" />
     </Grid>
 </UserControl>

@@ -45,9 +45,9 @@
         </Grid.ColumnDefinitions>
         <local:UserControlTableBase x:Name = "UserControlTableBase" Grid.Row="2" Grid.ColumnSpan="5" />
         <Button Command="{Binding CancelChangeCommand}" Visibility="{Binding VisibilityEditAddDelete}"
-            Content="Отменить" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Height="20" Margin="5,0,0,0"/>
+            Content="Отменить" VerticalAlignment="Center"  Height="20" Margin="5,0,0,0"/>
         <Button Command="{Binding UpdateCommand}" Visibility="{Binding VisibilityEditAddDelete}"
-            Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Height="20" Grid.Column="1" />
+            Content="Сохранить" VerticalAlignment="Center" Height="20" Grid.Column="1" />
         <Button Command="{Binding EditCommand}" IsEnabled="{Binding EnavledButtonFroSelectedRow}"
             Visibility="{Binding VisibilityEditAddDelete}"
             Content="Редактировать" VerticalAlignment="Center"  Grid.Column="2" Height="20" />

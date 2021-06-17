@@ -11,10 +11,13 @@ namespace kurs.service
     class DBFunction
     {
         private readonly MySqlConnection _connection;
-        public DBFunction(string connect = "SERVER = localhost;Database=гардероб;UID=root; Password=root;  convert zero datetime=True; ")
+        public DBFunction(MySqlConnection connect)
+        {
+            _connection = connect;
+        }
+        public DBFunction(string connect = "SERVER = localhost;Database=гардероб1;UID=root; Password=root;  convert zero datetime=True; ")
         {
             _connection = new MySqlConnection(connect);
-
         }
         public int CallFuncCamputeSum(string text, int id, int count)
         {

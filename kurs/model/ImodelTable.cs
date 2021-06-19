@@ -14,6 +14,6 @@ namespace kurs.model
 
         bool CheckDataForEdit();
         bool CheckDataForAdd();
-
+        void Clear();
     }
 }

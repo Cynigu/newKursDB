@@ -22,7 +22,7 @@ namespace kurs.vm
     public abstract class AbstractViewModelTableBase : ReactiveObject
     {
         #region Readonly
-        public readonly DB _dB;
+        protected readonly DB _dB;
         private readonly string _SelectedCommandText; // Для отображения таблицы 
 
 

@@ -178,5 +178,12 @@ namespace kurs.model
 
             return plan;
         }
+
+        public void Clear()
+        {
+            QPlan = 0;
+            SelectedNP = null;
+            QFact = 0;
+        }
     }
 }

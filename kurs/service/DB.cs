@@ -40,23 +40,19 @@ namespace kurs.models
         public void AddCommandTable(string SelectText)
         {
             MySqlCommand myCommand = new MySqlCommand(SelectText, _connection);
-            //MySqlDataAdapter adapter = new MySqlDataAdapter(myCommand);
             MySqlCommandBuilder commandB = new MySqlCommandBuilder(_adapter);
             _adapter.SelectCommand = myCommand;
             _adapter.DeleteCommand = commandB.GetDeleteCommand();
             _adapter.UpdateCommand = commandB.GetUpdateCommand();
             _adapter.InsertCommand = commandB.GetInsertCommand();
-            //adapter.(DT);
         }
 
         // Добавление таблицы и инициализация запроса select
         public void AddCommandSelectTable(string SelectText)
         {
             MySqlCommand myCommand = new MySqlCommand(SelectText, _connection);
-            //MySqlDataAdapter adapter = new MySqlDataAdapter(myCommand);
             MySqlCommandBuilder commandB = new MySqlCommandBuilder(_adapter);
             _adapter.SelectCommand = myCommand;
-            //adapter.(DT);
         }
 
         

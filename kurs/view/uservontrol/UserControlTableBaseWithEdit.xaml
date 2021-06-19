@@ -42,10 +42,11 @@
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="90*"/>
         </Grid.ColumnDefinitions>
-        <local:UserControlTableBase x:Name = "UserControlTableBase" Grid.Row="2" Grid.ColumnSpan="5" />
+        <local:UserControlTableBase x:Name = "UserControlTableBase" Grid.Row="2" Grid.ColumnSpan="6" />
         <Button Command="{Binding CancelChangeCommand}" Visibility="{Binding VisibilityEditAddDelete}"
-            Content="Отменить" VerticalAlignment="Center"  Height="20" Margin="5,0,0,0"/>
+            Content="Отменить" VerticalAlignment="Center"  Height="20" Margin="0"/>
         <Button Command="{Binding UpdateCommand}" Visibility="{Binding VisibilityEditAddDelete}"
             Content="Сохранить" VerticalAlignment="Center" Height="20" Grid.Column="1" />
         <Button Command="{Binding EditCommand}" IsEnabled="{Binding EnavledButtonFroSelectedRow}"
@@ -57,5 +58,8 @@
             IsEnabled="{Binding EnavledButtonFroSelectedRow}"
             Command="{Binding DeleteRowCommand}" Visibility="{Binding VisibilityEditAddDelete}"
             Content="Удалить" Grid.Column="4" VerticalAlignment="Center" Height="20" />
+        <Button
+            Command="{Binding ClearCommand}" Visibility="{Binding VisibilityEditAddDelete}"
+            Content="Очистить поля для редактир." Grid.Column="5" VerticalAlignment="Center" Height="20" />
     </Grid>
 </UserControl>

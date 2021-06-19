@@ -16,8 +16,6 @@ namespace kurs.vm
     {
         protected AbstractViewModelTableBaseWithEditAndOpen(string SelectedCommandText, string tablename) : base(SelectedCommandText, tablename)
         {
-            VisibilityEditAddDelete = Visibility.Hidden;
-            VisibilityOpen = Visibility.Hidden;
         }
 
         #region Fields

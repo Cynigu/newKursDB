@@ -40,7 +40,7 @@ namespace kurs.vm
 
         public override void GenerateTable()
         {
-
+            DT.AcceptChanges();
             foreach (DataRow dr in DT.Rows)
             {
                 if (dr.RowState == DataRowState.Deleted)
@@ -77,11 +77,14 @@ namespace kurs.vm
             _dBPZ.FillTable();
 
             int idBaseNP = PZ.Rows[0].Field<int>("id_НП");
-
+            int idBaseCp = NP1.Select("id_НП = " + idBaseNP)[0].Field<int>("Спецификация");
             List<List<int>> idCP = new List<List<int>>();
+            List<int> checkCP = new List<int>();
+            checkCP.Add(idBaseCp);
             idCP.Add(new List<int>());
-            idCP[0].Add(NP1.Select("id_НП = " + idBaseNP)[0].Field<int>("Спецификация"));
+            idCP[0].Add(idBaseCp);
             idCP[0].Add(_qPZ);
+
             while (idCP.Count != 0)
             {
                 foreach (DataRow drkom in KOM.Select("Спецификация =" + idCP[0][0]))
@@ -89,8 +92,16 @@ namespace kurs.vm
                     int idnp = drkom.Field<int>("НП");
                     if (!NP1.Select("id_НП =" + idnp)[0].IsNull("Спецификация"))
                     {
+                        int idcp = NP1.Select("id_НП =" + idnp)[0].Field<int>("Спецификация");
+                        if (checkCP.Contains(idcp))
+                        {
+                            MessageBox.Show("НП данного заказа имеет некорректную спецификацию, из-за чего нельзя сгенерировать таблицу автоматически");
+                            return;
+                        }
+                        else checkCP.Add(idcp);
+
                         idCP.Add(new List<int>());
-                        idCP[idCP.Count - 1].Add(NP1.Select("id_НП =" + idnp)[0].Field<int>("Спецификация"));
+                        idCP[idCP.Count - 1].Add(idcp);
                         idCP[idCP.Count - 1].Add(idCP[0][1] * drkom.Field<int>("Кол-во"));
 
                         DataRow dr = DT.NewRow();

@@ -58,7 +58,7 @@
         </Grid.ColumnDefinitions>
 
         <local:UserControlTableBaseWithEdit x:Name = "UserControlTableBaseWithOnlyEdit" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="12" />
-        <Button Command="{Binding GenerateTableCommand}" IsEnabled="{Binding EnDataEnd}"
+        <Button Command="{Binding GenerateTableCommand}" IsEnabled="{Binding EnDataEnd}" 
             Content="Сгенерировать таблицу автоматически" Grid.Column="5"  Grid.Row="10" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
         <Button Command="{Binding ExportDataFromRowToEdit}" IsEnabled="{Binding EnDataEnd}"
             Content="Перенести данные из выбранной строки" Grid.Column="5"  Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2"  />

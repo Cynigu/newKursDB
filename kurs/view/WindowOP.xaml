@@ -1,11 +1,11 @@
-﻿<Window x:Class="kurs.view.WindowRC"
+﻿<Window x:Class="kurs.view.WindowOP"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kurs.view"
         mc:Ignorable="d"
-       Title="{Binding TableName}" Height="400" Width="1058" WindowStartupLocation="CenterScreen">
+        Title="{Binding TableName}" Height="400" Width="1058" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="TextBox.Height" Value= "23" />
@@ -61,15 +61,35 @@
         </Grid.ColumnDefinitions>
         <local:UserControlTableBaseWithEdit x:Name = "UserControlTableBaseWithEdit" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="12" />
         <Button Command="{Binding ExportDataFromRowToEdit}" IsEnabled="{Binding EnDataEnd}"
-            Content="Перенести данные из выбранной строки" Grid.Column="5"  Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
-        <TextBox x:Name="Name1" Grid.Column="6" Height="23" TextWrapping="Wrap" 
-            Text="{Binding RCModel.Description}" VerticalAlignment="Center"  Grid.Row="1" />
-        <TextBlock Grid.Column="5" HorizontalAlignment="Center" TextWrapping="Wrap" 
-            Text="Описание:" VerticalAlignment="Center" Grid.Row="1"/>
-        <TextBox x:Name="Period" Grid.Column="6" Height="23" TextWrapping="Wrap" 
-            PreviewTextInput="Period_PreviewTextInput"
-            Text="{Binding RCModel.Power}" VerticalAlignment="Center" Grid.Row="2" />
-        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap"
-            Text="Ежедневная мощность:" VerticalAlignment="Center"/>
+            Content="Перенести данные из выбранной строки" Grid.Column="5"  Grid.Row="7" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+        <TextBox x:Name="Name1" Grid.Column="6" TextWrapping="Wrap" 
+            Text="{Binding OPModel.Description}" Grid.Row="1"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Описание:" VerticalAlignment="Center" Grid.Row="1" />
+        <ComboBox ItemsSource="{Binding OPModel.RC}"
+            DisplayMemberPath ="id_РЦ"
+            SelectedItem="{Binding OPModel.SelectedRC}"
+            Grid.Column="6" Grid.Row="2" VerticalAlignment="Center"  />
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="РЦ:" VerticalAlignment="Center"/>
+        <TextBox x:Name="Kdokaz" Grid.Column="6" Height="24" TextWrapping="Wrap" 
+            PreviewTextInput="Kdokaz_PreviewTextInput"
+            Text="{Binding OPModel.TimeOBR}" VerticalAlignment="Center" Grid.Row="3"/>
+        <TextBox x:Name="Kdokaz_Copy" Grid.Column="6" Height="24" TextWrapping="Wrap" 
+            PreviewTextInput="Kdokaz_PreviewTextInput"
+            Text="{Binding OPModel.TimePERE}" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBox x:Name="Kdokaz_Copy1" Grid.Column="6" Height="24" TextWrapping="Wrap" 
+            PreviewTextInput="Kdokaz_PreviewTextInput"
+            Text="{Binding OPModel.TimeNAL}" VerticalAlignment="Center" Grid.Row="5"/>
+        <ComboBox ItemsSource="{Binding OPModel.OP}"
+            DisplayMemberPath ="id_Операция"
+            SelectedItem="{Binding OPModel.SelectedOP}"
+            Grid.Column="6" Grid.Row="6" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" 
+                   Text="Время обработки:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" 
+            Text="Время перехода:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" 
+            Text="Время наладки:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="6" TextWrapping="Wrap" 
+            Text="Следующая операция:" VerticalAlignment="Center" />
     </Grid>
 </Window>

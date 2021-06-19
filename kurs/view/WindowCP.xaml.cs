@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowCklad.xaml
+    /// Логика взаимодействия для WindowCP.xaml
     /// </summary>
-    public partial class WindowUniversalTable : Window
+    public partial class WindowCP : Window
     {
-        public WindowUniversalTable()
+        public WindowCP()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

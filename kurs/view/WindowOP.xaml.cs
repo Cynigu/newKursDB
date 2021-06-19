@@ -15,20 +15,20 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowRC.xaml
+    /// Логика взаимодействия для WindowOP.xaml
     /// </summary>
-    public partial class WindowRC : Window
+    public partial class WindowOP : Window
     {
-        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        public WindowOP()
+        {
+            InitializeComponent();
+        }
+        private void Kdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!(Char.IsDigit(e.Text, 0)))
             {
                 e.Handled = true;
             }
-        }
-        public WindowRC()
-        {
-            InitializeComponent();
         }
     }
 }

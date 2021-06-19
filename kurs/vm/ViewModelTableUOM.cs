@@ -18,6 +18,7 @@ namespace kurs.vm
         private readonly int _idPZ;
         public ViewModelTableUOM(string SelectedCommandText,string t = "Учтенные операции (мощности)") : base(SelectedCommandText, t)
         {
+            InizialistModel();
         }
 
         public ViewModelTableUOM(string SelectedCommandText, int idPZ, string t = "Учтенные операции (мощности)") : base(SelectedCommandText, t)

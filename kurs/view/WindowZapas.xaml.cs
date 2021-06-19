@@ -19,6 +19,13 @@ namespace kurs.view
     /// </summary>
     public partial class WindowZapas : Window
     {
+        private void Kdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
+            {
+                e.Handled = true;
+            }
+        }
         public WindowZapas()
         {
             InitializeComponent();

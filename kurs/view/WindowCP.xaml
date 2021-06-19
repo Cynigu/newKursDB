@@ -1,15 +1,12 @@
-﻿<Window x:Class="kurs.view.WindowRC"
+﻿<Window x:Class="kurs.view.WindowCP"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kurs.view"
         mc:Ignorable="d"
-       Title="{Binding TableName}" Height="400" Width="1058" WindowStartupLocation="CenterScreen">
+        Title="{Binding TableName}" Height="400" Width="1058" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style TargetType="TextBox">
-            <Setter Property="TextBox.Height" Value= "23" />
-        </Style>
         <Style TargetType="Button">
             <Setter Property="Button.Background" Value= "#FF374785" />
             <Setter Property="Button.Foreground" Value="#FFFFF8F0"/>
@@ -45,7 +42,7 @@
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="22*"/>
         </Grid.RowDefinitions>
@@ -59,17 +56,13 @@
             <ColumnDefinition Width="120*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <local:UserControlTableBaseWithEdit x:Name = "UserControlTableBaseWithEdit" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="12" />
+        <local:UserControlTableBaseEditOpen x:Name = "UserControlTableBaseWithEdit" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="12" />
+        <TextBlock Grid.Column="5" TextWrapping="Wrap" Text="Статус:" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button Command="{Binding ExportDataFromRowToEdit}" IsEnabled="{Binding EnDataEnd}"
-            Content="Перенести данные из выбранной строки" Grid.Column="5"  Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
-        <TextBox x:Name="Name1" Grid.Column="6" Height="23" TextWrapping="Wrap" 
-            Text="{Binding RCModel.Description}" VerticalAlignment="Center"  Grid.Row="1" />
-        <TextBlock Grid.Column="5" HorizontalAlignment="Center" TextWrapping="Wrap" 
-            Text="Описание:" VerticalAlignment="Center" Grid.Row="1"/>
-        <TextBox x:Name="Period" Grid.Column="6" Height="23" TextWrapping="Wrap" 
-            PreviewTextInput="Period_PreviewTextInput"
-            Text="{Binding RCModel.Power}" VerticalAlignment="Center" Grid.Row="2" />
-        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap"
-            Text="Ежедневная мощность:" VerticalAlignment="Center"/>
+            Content="Перенести данные из выбранной строки" Grid.Column="5"  Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+        <ComboBox x:Name="Name1" Grid.Column="6" Height="23"
+            SelectedItem="{Binding CPModel.SelectedStatus}"
+            DisplayMemberPath ="название"
+            ItemsSource="{Binding CPModel.Status}" VerticalAlignment="Center"  Grid.Row="1" />
     </Grid>
 </Window>

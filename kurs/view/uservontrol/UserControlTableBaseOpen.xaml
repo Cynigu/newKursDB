@@ -57,12 +57,11 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="TheDataGrid"  ItemsSource ="{Binding Path=DT, Mode=TwoWay}"
                    SelectedItem="{Binding SelectedRow}"
-                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True"
-                  Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="5"/>
+                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" Grid.RowSpan="11" Grid.ColumnSpan="7"/>
         <Button Command="{Binding FillCommand}"
             Content="Обновить" Grid.Column="5" VerticalAlignment="Center" Height="20" Grid.Row="11" />
         <Button IsEnabled="{Binding EnavledButtonFroSelectedRow}" 
             Command="{Binding OpenCommand}" Visibility="{Binding VisibilityOpen}"
-            Content="Открыть состав" Grid.Column="1" Grid.Row="11" Height="20" Grid.RowSpan="2" VerticalAlignment="Center" />
+            Content="Открыть состав" Grid.Row="11" Height="20" Grid.RowSpan="2" VerticalAlignment="Center" Grid.ColumnSpan="2" />
     </Grid>
 </UserControl>

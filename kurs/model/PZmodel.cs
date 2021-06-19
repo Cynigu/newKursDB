@@ -235,6 +235,17 @@ namespace kurs.model
             }
             return true;
         }
+
+        public void Clear()
+        {
+            Discription = "";
+            Quantity = 0;
+
+            SelectedNP = null;
+            SelectedStatus = null;
+            DateStart = null;
+            DateEnd = null;
+        }
         #endregion
     }
 }

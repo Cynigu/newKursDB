@@ -2,17 +2,15 @@
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-// вм для работы с окном редактирования для таблицы НП
-
-namespace kurs.vm
+namespace kurs.model
 {
-    public class ViewModelEditNP : ReactiveObject
+    class NPmodel : ReactiveObject, ImodelTable
     {
         #region Fields
         private DataTable mk;
@@ -26,7 +24,7 @@ namespace kurs.vm
         private readonly DB _dBSpisania;
 
         private DataRowView selectedMK;
-        private DataRowView  selectedCp;
+        private DataRowView selectedCp;
         private DataRowView selectedMethodWriteOff;
         private DataRowView selectedRenewals;
         private string name;
@@ -39,9 +37,8 @@ namespace kurs.vm
         private bool isEnablePoint;
 
         #endregion
-
         #region Properties
-        public DataTable MK 
+        public DataTable MK
         {
             get { return mk; }
             set { this.RaiseAndSetIfChanged(ref mk, value); }
@@ -55,8 +52,10 @@ namespace kurs.vm
         public DataTable MethodVozobnovlen
         {
             get { return methodVozobnovlen; }
-            set {
-                this.RaiseAndSetIfChanged(ref methodVozobnovlen, value);}
+            set
+            {
+                this.RaiseAndSetIfChanged(ref methodVozobnovlen, value);
+            }
         }
         public DataTable MethodSpisania
         {
@@ -81,10 +80,16 @@ namespace kurs.vm
         public DataRowView SelectedRenewals
         {
             get { return selectedRenewals; }
-            set {
-                
+            set
+            {
+
                 this.RaiseAndSetIfChanged(ref selectedRenewals, value);
-                if (SelectedRenewals.Row["название"].ToString() == "Покупка")
+                if (SelectedRenewals == null)
+                {
+                    IsEnableMKCP = true;
+                    IsEnablePoint = false;
+                }
+                else if (SelectedRenewals.Row["название"].ToString() == "Покупка")
                 {
                     IsEnableMKCP = false;
                     IsEnablePoint = true;
@@ -122,7 +127,7 @@ namespace kurs.vm
             set { this.RaiseAndSetIfChanged(ref period, value); }
         }
 
-        public bool IsEnableMKCP 
+        public bool IsEnableMKCP
         {
             get { return isEnableMKCP; }
             set { this.RaiseAndSetIfChanged(ref isEnableMKCP, value); }
@@ -135,9 +140,8 @@ namespace kurs.vm
         }
 
         #endregion
-
         #region Constructors
-        public ViewModelEditNP()
+        public NPmodel()
         {
             MK = new DataTable();
             string commandFillMK = "select id_МК from мк;";
@@ -168,62 +172,121 @@ namespace kurs.vm
         }
 
         #endregion
-        #region methods
-        public void ChangeRowInTable(DataRow newRow)
+        #region Methods
+        public bool CheckDataForAdd()
         {
-            if (SelectedMethodWriteOff != null) {
-                newRow["Метод_списания"] = SelectedMethodWriteOff[0];
+            if (Name == null || Name == "")
+            {
+                MessageBox.Show("Введите наименование");
+                return false;
             }
-            newRow["Наименование"] = Name;
-            newRow["Ед_изм"] = UnitM;
-            if (SelectedRenewals != null) {
-                newRow["Метод_возобновления"] = SelectedRenewals[0];
+            if (UnitM == null || UnitM == "")
+            {
+                MessageBox.Show("Введите единицу измерения");
+                return false;
             }
-            newRow["Точка_доказа"] = Point;
-            newRow["Кол-во_для_доказа"] = Quantity;
-            newRow["Период_ожидания"] = Period;
+            return true;
+        }
+
+        public bool CheckDataForEdit()
+        {
+            if (Name == null || Name == "")
+            {
+                MessageBox.Show("Введите наименование");
+                return false;
+            }
+            if (UnitM == null || UnitM == "")
+            {
+                MessageBox.Show("Введите единицу измерения");
+                return false;
+            }
+            return true;
+        }
+
+        public void RowFromModelToTable(DataRow rowForEdit)
+        {
+            if (SelectedMethodWriteOff != null)
+            {
+                rowForEdit["Метод_списания"] = SelectedMethodWriteOff[0];
+            }
+            rowForEdit["Наименование"] = Name;
+            rowForEdit["Ед_изм"] = UnitM;
+            
+            rowForEdit["Точка_доказа"] = Point;
+            rowForEdit["Кол-во_для_доказа"] = Quantity;
+            rowForEdit["Период_ожидания"] = Period;
             if (SelectedMK != null)
             {
-                newRow["Маршрут"] = SelectedMK.Row[0];
+                rowForEdit["Маршрут"] = SelectedMK.Row[0];
             }
             if (SelectedCp != null)
             {
-                newRow["Спецификация"] = SelectedCp.Row[0];
+                rowForEdit["Спецификация"] = SelectedCp.Row[0];
+            }
+
+            if (SelectedRenewals != null)
+            {
+                rowForEdit["Метод_возобновления"] = SelectedRenewals[0];
+                if (SelectedRenewals.Row.Field<string>("название") == "Покупка")
+                {
+                    rowForEdit["Маршрут"] = DBNull.Value;
+                    rowForEdit["Спецификация"] = DBNull.Value;
+                }
+                else if (SelectedRenewals.Row.Field<string>("название") == "Производство")
+                {
+                    rowForEdit["Точка_доказа"] = DBNull.Value;
+                    rowForEdit["Кол-во_для_доказа"] = DBNull.Value;
+                    rowForEdit["Период_ожидания"] = DBNull.Value;
+                }
             }
         }
 
-        public void CopyRowInWindow(DataRow temp)
+        public void RowFromTableToModel(DataRow rowForEdit)
         {
-            Name = temp["Наименование"].ToString();
-            UnitM = temp["Ед_изм"].ToString();
-            Point = int.Parse(temp["Точка_доказа"].ToString());
-            Quantity = int.Parse(temp["Кол-во_для_доказа"].ToString());
-            Period = int.Parse(temp["Период_ожидания"].ToString());
-            if (!temp.IsNull("Метод_возобновления"))
+            Name = rowForEdit["Наименование"].ToString();
+            UnitM = rowForEdit["Ед_изм"].ToString();
+            Point = int.Parse(rowForEdit["Точка_доказа"].ToString());
+            Quantity = int.Parse(rowForEdit["Кол-во_для_доказа"].ToString());
+            Period = int.Parse(rowForEdit["Период_ожидания"].ToString());
+            if (!rowForEdit.IsNull("Метод_возобновления"))
             {
-                int m = int.Parse(temp["Метод_возобновления"].ToString());
+                int m = int.Parse(rowForEdit["Метод_возобновления"].ToString());
                 SelectedRenewals = MethodVozobnovlen.DefaultView[
                     MethodVozobnovlen.Rows.IndexOf(
                         MethodVozobnovlen.Select("idМетод_возобновления =" + m)[0])];
             }
-            if (!temp.IsNull("Метод_списания"))
+            if (!rowForEdit.IsNull("Метод_списания"))
             {
-                int m = int.Parse(temp["Метод_списания"].ToString());
+                int m = int.Parse(rowForEdit["Метод_списания"].ToString());
                 SelectedMethodWriteOff = MethodSpisania.DefaultView[
                     MethodSpisania.Rows.IndexOf(
                         MethodSpisania.Select("idМетод_списания =" + m)[0])];
             }
-            if (!temp.IsNull("Маршрут"))
+            if (!rowForEdit.IsNull("Маршрут"))
             {
-                int m = int.Parse(temp["Маршрут"].ToString());
+                int m = int.Parse(rowForEdit["Маршрут"].ToString());
                 SelectedMK = MK.DefaultView[MK.Rows.IndexOf(MK.Select("id_МК =" + m)[0])];
             }
-            if (!temp.IsNull("Спецификация"))
+            if (!rowForEdit.IsNull("Спецификация"))
             {
-                int c = int.Parse(temp["Спецификация"].ToString());
+                int c = int.Parse(rowForEdit["Спецификация"].ToString());
                 SelectedCp = CP.DefaultView[CP.Rows.IndexOf(CP.Select("id_Спецификация =" + c)[0])];
             }
         }
+
+        public void Clear()
+        {
+            Name = "";
+            UnitM = "";
+            Point = 0;
+            Quantity = 0;
+            Period = 0;
+            SelectedRenewals = null;
+            SelectedMethodWriteOff = null;
+            SelectedMK = null;
+            SelectedCp = null;
+        }
+
         #endregion
     }
 }

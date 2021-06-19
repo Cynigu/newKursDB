@@ -37,6 +37,8 @@ namespace kurs.vm
             get { return modelTable; }
             set { this.RaiseAndSetIfChanged(ref modelTable, value); }
         }
+
+        public DateTime? EditData { get; set; }
         #endregion
 
         #region Commands
@@ -111,6 +113,19 @@ namespace kurs.vm
             }
         }
 
+        private ICommand clearCommand;
+        public ICommand ClearCommand
+        {
+            get
+            {
+                return clearCommand ??
+                  (clearCommand = new RelayCommand(obj =>
+                  {
+                      ModelTable.Clear();
+                  }));
+            }
+        }
+
         // Сохранить изменения
         private AsyncCommand updateCommand;
         public IAsyncCommand UpdateCommand
@@ -142,21 +157,21 @@ namespace kurs.vm
 
                 int index = DT.Rows.IndexOf(SelectedRow.Row);
                 DT.Rows[index].Delete();
-                //_dB.UpdateBD(DT);
             }
             else { return; }
         }
         private void Cancel()
         {
+            EditData = null;
             DT.RejectChanges();
         }
         public virtual void Edit() 
         {
 
             if(!ModelTable.CheckDataForEdit()) return;
-            DataRow temp = SelectedRow.Row;
-            ModelTable.RowFromTableToModel(temp);
-            DataRow newRow = temp;
+            //DataRow temp = SelectedRow.Row;
+            //ModelTable.RowFromTableToModel(temp);
+            DataRow newRow = SelectedRow.Row;
             ModelTable.RowFromModelToTable(newRow);
         }
         public virtual void Add()
@@ -174,7 +189,7 @@ namespace kurs.vm
             DataRow temp = SelectedRow.Row;
             ModelTable.RowFromTableToModel(temp);
         }
-        public void Update()
+        public virtual void Update()
         {
             _dB.UpdateBD();
             DT.Clear();
@@ -183,6 +198,7 @@ namespace kurs.vm
         // Сохранить изменения
         public async Task UpdateAsync()
         {
+            EditData = DateTime.Now;
             await _dB.UpdateBDAsync();
             DT.Clear();
             await _dB.FillTableAsync();

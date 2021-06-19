@@ -15,37 +15,35 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для EditOP.xaml
+    /// Логика взаимодействия для WindowNP.xaml
     /// </summary>
-    public partial class EditKom : Window
+    public partial class WindowNP : Window
     {
-        public EditKom()
+        public WindowNP()
         {
             InitializeComponent();
         }
 
-        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void Tdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!(Char.IsDigit(e.Text, 0)))
             {
                 e.Handled = true;
             }
         }
-
-        private void Accept_Click(object sender, RoutedEventArgs e)
+        private void Kdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (UnitM.Text == null || UnitM.Text == "")
+            if (!(Char.IsDigit(e.Text, 0)))
             {
-                MessageBox.Show("Введите кол-во");
-                return;
+                e.Handled = true;
             }
-            if (ComboBox1.Text == null || ComboBox1.Text == "")
+        }
+        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
             {
-                MessageBox.Show("Введите номер НП");
-                return;
+                e.Handled = true;
             }
-
-            this.DialogResult = true;
         }
     }
 }

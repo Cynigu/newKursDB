@@ -6,10 +6,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-namespace kurs.vm
+namespace kurs.model
 {
-    class ViewModelEditCP: ReactiveObject
+    class CPmodel : ReactiveObject, ImodelTable
     {
         #region Fields
 
@@ -18,7 +19,7 @@ namespace kurs.vm
 
         private DataRowView selectedStatus;
 
-        private DateTime dateStart;
+        private DateTime? dateStart;
 
         #endregion
 
@@ -35,7 +36,7 @@ namespace kurs.vm
             set { this.RaiseAndSetIfChanged(ref selectedStatus, value); }
         }
 
-        public DateTime DateStart
+        public DateTime? DateStart
         {
             get { return dateStart; }
             set { this.RaiseAndSetIfChanged(ref dateStart, value); }
@@ -44,23 +45,45 @@ namespace kurs.vm
         #endregion
 
         #region Constructors
-        public ViewModelEditCP()
+        public CPmodel()
         {
-            
-
             Status = new DataTable();
             _dBStatus = new DB(Status);
             string commandFillCp = "select * from статус_спецификации;";
             _dBStatus.AddCommandSelectTable(commandFillCp);
             _dBStatus.FillTable();
-
-            DateStart = new DateTime();
+            DateStart = null;
         }
 
         #endregion
 
-        #region methods
-        public  void ChangeRowInTable(DataRow rowForEdit)
+        public bool CheckDataForAdd()
+        {
+            if (SelectedStatus == null)
+            {
+                MessageBox.Show("Введите статус");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckDataForEdit()
+        {
+            if (SelectedStatus == null)
+            {
+                MessageBox.Show("Введите статус");
+                return false;
+            }
+            return true;
+        }
+
+        public void Clear()
+        {
+            SelectedStatus = null;
+            DateStart = null;
+        }
+
+        public void RowFromModelToTable(DataRow rowForEdit)
         {
             DateStart = DateTime.Now;
             if (SelectedStatus != null)
@@ -73,9 +96,8 @@ namespace kurs.vm
             }
         }
 
-        public  void CopyRowInWindow(DataRow rowForEdit)
+        public void RowFromTableToModel(DataRow rowForEdit)
         {
-
             if (!rowForEdit.IsNull("Статус"))
             {
                 int c = int.Parse(rowForEdit["Статус"].ToString());
@@ -86,7 +108,5 @@ namespace kurs.vm
                 DateStart = DateTime.Parse(rowForEdit["Дата_изменения"].ToString());
             }
         }
-
-        #endregion
     }
 }

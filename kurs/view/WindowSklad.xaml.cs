@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для EditCP.xaml
+    /// Логика взаимодействия для WindowSklad.xaml
     /// </summary>
-    public partial class EditCP : Window
+    public partial class WindowSklad : Window
     {
-        public EditCP()
+        public WindowSklad()
         {
             InitializeComponent();
-        }
-        private void Accept_Click(object sender, RoutedEventArgs e)
-        {
-            if (Name1.Text == null || Name1.Text == "")
-            {
-                MessageBox.Show("Введите статус");
-                return;
-            }
-
-            this.DialogResult = true;
         }
     }
 }

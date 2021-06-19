@@ -171,6 +171,14 @@ namespace kurs.model
             return true;
         }
 
+        public void Clear()
+        {
+
+                SelectedOP = null;
+                SelectedRC = null;
+                TimeFact = 0;
+        }
+
         #endregion
     }
 }

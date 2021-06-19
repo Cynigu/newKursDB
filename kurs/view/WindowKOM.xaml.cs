@@ -15,13 +15,20 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для NC.xaml
+    /// Логика взаимодействия для WindowKOM.xaml
     /// </summary>
-    public partial class WindowNP : Window
+    public partial class WindowKOM : Window
     {
-        public WindowNP()
+        public WindowKOM()
         {
             InitializeComponent();
+        }
+        private void Kdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

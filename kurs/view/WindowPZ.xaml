@@ -59,10 +59,10 @@
         <local:UserControlTableBaseWithEdit x:Name = "UserControlTableBaseWithEdit" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="12" />
         <Button Command="{Binding OpenUOTCommand}" Visibility="{Binding VisibilityOpenUO}"
                 IsEnabled="{Binding EnavledButtonFroSelectedRow}"
-            Content="Журнал потребления" Grid.Column="5" VerticalAlignment="Center" Height="20" Margin="3,0" Grid.Row="9" />
+            Content="Журнал потребления" Grid.Column="5" VerticalAlignment="Center" Height="20" Margin="3,0" Grid.Row="10" />
         <Button IsEnabled="{Binding EnavledButtonFroSelectedRow}"
             Command="{Binding OpenUOMCommand}" Visibility="{Binding VisibilityOpenUO}"
-            Content="Журнал операций" Grid.Column="5" Grid.Row="10" VerticalAlignment="Center" Height="20" Margin="3,0" />
+            Content="Журнал операций" Grid.Column="5" Grid.Row="9" VerticalAlignment="Center" Height="20" Margin="3,0" />
         <Button IsEnabled="{Binding EnavledButtonFroSelectedRow}"
             Command="{Binding OpenGPrCommand}" Visibility="{Binding VisibilityOpenUO}"
             Content="Журнал выхода ГП" Grid.Column="5" Grid.Row="11" VerticalAlignment="Center" Height="20" Margin="3,0" />

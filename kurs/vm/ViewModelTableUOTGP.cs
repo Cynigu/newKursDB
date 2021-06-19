@@ -108,7 +108,12 @@ namespace kurs.vm
                         dr["id_ПЗ"] = _idPZ;
                         dr["id_НП"] = drkom.Field<int>("НП");
                         dr["Кол-во (план)"] = drkom.Field<int>("Кол-во") * idCP[0][1];
-                        DT.Rows.Add(dr);
+                        if (DT.Select("id_НП =" + idnp).Length > 0)
+                        {
+                            DT.Select("id_НП =" + idnp)[0]["Кол-во (план)"] = DT.Select("id_НП =" + idnp)[0].Field<int>("Кол-во (план)")
+                                + dr.Field<int>("Кол-во (план)");
+                        }
+                        else DT.Rows.Add(dr);
                     }
                 }
                 idCP.RemoveAt(0);

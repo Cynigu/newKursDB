@@ -185,6 +185,11 @@ namespace kurs.model
                 MessageBox.Show("Введите единицу измерения");
                 return false;
             }
+            if (SelectedRenewals == null)
+            {
+                MessageBox.Show("Введите метод возобновления");
+                return false;
+            }
             return true;
         }
 
@@ -198,6 +203,11 @@ namespace kurs.model
             if (UnitM == null || UnitM == "")
             {
                 MessageBox.Show("Введите единицу измерения");
+                return false;
+            }
+            if (SelectedRenewals == null)
+            {
+                MessageBox.Show("Введите метод возобновления");
                 return false;
             }
             return true;
@@ -243,35 +253,45 @@ namespace kurs.model
 
         public void RowFromTableToModel(DataRow rowForEdit)
         {
-            Name = rowForEdit["Наименование"].ToString();
-            UnitM = rowForEdit["Ед_изм"].ToString();
-            Point = int.Parse(rowForEdit["Точка_доказа"].ToString());
-            Quantity = int.Parse(rowForEdit["Кол-во_для_доказа"].ToString());
-            Period = int.Parse(rowForEdit["Период_ожидания"].ToString());
+            Name = rowForEdit.Field<string>("Наименование");
+            UnitM = rowForEdit.Field<string>("Ед_изм");
+            if (!rowForEdit.IsNull("Точка_доказа"))
+                Point = rowForEdit.Field<int>("Точка_доказа");
+            else Point = 0;
+            if (!rowForEdit.IsNull("Кол-во_для_доказа"))
+                Quantity = rowForEdit.Field<int>("Кол-во_для_доказа");
+            else Quantity = 0;
+            if (!rowForEdit.IsNull("Период_ожидания"))
+                Period = rowForEdit.Field<int>("Период_ожидания");
+            else Period = 0;
             if (!rowForEdit.IsNull("Метод_возобновления"))
             {
-                int m = int.Parse(rowForEdit["Метод_возобновления"].ToString());
+                int m = rowForEdit.Field<int>("Метод_возобновления");
                 SelectedRenewals = MethodVozobnovlen.DefaultView[
                     MethodVozobnovlen.Rows.IndexOf(
                         MethodVozobnovlen.Select("idМетод_возобновления =" + m)[0])];
+                rowForEdit["Метод_возобновления"] = SelectedRenewals[0];
             }
             if (!rowForEdit.IsNull("Метод_списания"))
             {
-                int m = int.Parse(rowForEdit["Метод_списания"].ToString());
+                int m = rowForEdit.Field<int>("Метод_списания");
                 SelectedMethodWriteOff = MethodSpisania.DefaultView[
                     MethodSpisania.Rows.IndexOf(
                         MethodSpisania.Select("idМетод_списания =" + m)[0])];
             }
+            else SelectedMethodWriteOff = null;
             if (!rowForEdit.IsNull("Маршрут"))
             {
-                int m = int.Parse(rowForEdit["Маршрут"].ToString());
+                int m = rowForEdit.Field<int>("Маршрут");
                 SelectedMK = MK.DefaultView[MK.Rows.IndexOf(MK.Select("id_МК =" + m)[0])];
             }
+            else SelectedMK = null;
             if (!rowForEdit.IsNull("Спецификация"))
             {
-                int c = int.Parse(rowForEdit["Спецификация"].ToString());
+                int c = rowForEdit.Field<int>("Спецификация");
                 SelectedCp = CP.DefaultView[CP.Rows.IndexOf(CP.Select("id_Спецификация =" + c)[0])];
             }
+            else SelectedCp = null;
         }
 
         public void Clear()

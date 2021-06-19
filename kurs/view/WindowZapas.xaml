@@ -71,7 +71,7 @@
         <TextBox x:Name="Kdokaz" Grid.Column="6" Height="24" TextWrapping="Wrap" 
             PreviewTextInput="Kdokaz_PreviewTextInput"
             Text="{Binding ZModel.Quantity}" VerticalAlignment="Center" Grid.Row="3" />
-        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" Text="Кол-во для доказа:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" Text="Кол-во:" VerticalAlignment="Center"/>
         <ComboBox ItemsSource="{Binding ZModel.NP}"
             DisplayMemberPath ="id_НП"
             SelectedItem="{Binding ZModel.SelectedNP}"

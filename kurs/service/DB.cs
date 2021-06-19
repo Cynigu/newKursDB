@@ -24,7 +24,7 @@ namespace kurs.models
 
         #region Constructors
         //string connect = "SERVER = localhost;Database=kursdb;UID=root; Password=root;  convert zero datetime=True; "
-        public DB(DataTable DT, string connect = "SERVER = localhost;Database=гардероб1;UID=root; Password=root;  convert zero datetime=True; ")
+        public DB(DataTable DT, string connect = "SERVER = localhost;Database=garderob;UID=root; Password=root;  convert zero datetime=True; ")
         {
             _connection = new MySqlConnection(connect);
             _adapter = new MySqlDataAdapter();

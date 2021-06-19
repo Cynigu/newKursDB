@@ -70,7 +70,7 @@ namespace kurs.vm
 
         private void GenerateTable()
         {
-
+            DT.AcceptChanges();
             foreach (DataRow dr in DT.Rows)
             {
                 if (dr.RowState == DataRowState.Deleted)

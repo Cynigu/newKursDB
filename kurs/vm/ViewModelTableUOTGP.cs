@@ -85,6 +85,12 @@ namespace kurs.vm
             idCP[0].Add(idBaseCp);
             idCP[0].Add(_qPZ);
 
+            DataRow dr1 = DT.NewRow();
+            dr1["id_ПЗ"] = _idPZ;
+            dr1["id_НП"] = idBaseNP;
+            dr1["Кол-во (план)"] = _qPZ;
+            DT.Rows.Add(dr1);
+
             while (idCP.Count != 0)
             {
                 foreach (DataRow drkom in KOM.Select("Спецификация =" + idCP[0][0]))
@@ -108,9 +114,10 @@ namespace kurs.vm
                         dr["id_ПЗ"] = _idPZ;
                         dr["id_НП"] = drkom.Field<int>("НП");
                         dr["Кол-во (план)"] = drkom.Field<int>("Кол-во") * idCP[0][1];
-                        if (DT.Select("id_НП =" + idnp).Length > 0)
+                        string sel = "id_НП =" + idnp + "and id_ПЗ =" + _idPZ;
+                        if (DT.Select(sel).Length > 0)
                         {
-                            DT.Select("id_НП =" + idnp)[0]["Кол-во (план)"] = DT.Select("id_НП =" + idnp)[0].Field<int>("Кол-во (план)")
+                            DT.Select(sel)[0]["Кол-во (план)"] = DT.Select(sel)[0].Field<int>("Кол-во (план)")
                                 + dr.Field<int>("Кол-во (план)");
                         }
                         else DT.Rows.Add(dr);

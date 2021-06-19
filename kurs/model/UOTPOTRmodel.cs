@@ -23,8 +23,9 @@ namespace kurs.model
             _dBzapas = new DB(zapas);
             _dBzapas.AddCommandSelectTable(commandFillNP);
             _dBzapas.FillTable();
-
-            int maxQ = zapas.Select("НП=" + SelectedNP.Row.Field<int>("id_НП").ToString())[0].Field<int>("Кол-во");
+            int maxQ = 0;
+            if (!zapas.Select("НП=" + SelectedNP.Row.Field<int>("id_НП").ToString())[0].IsNull("Кол-во")) 
+                maxQ = zapas.Select("НП=" + SelectedNP.Row.Field<int>("id_НП").ToString())[0].Field<int>("Кол-во");
             if (maxQ < QFact)
             {
                 MessageBox.Show("На складе нет столько ресурсов сколько вы указали!!");

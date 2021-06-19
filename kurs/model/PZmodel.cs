@@ -230,7 +230,7 @@ namespace kurs.model
             }
             if (SelectedStatus == null)
             {
-                MessageBox.Show("Введите кол-во");
+                MessageBox.Show("Введите статус");
                 return false;
             }
             return true;

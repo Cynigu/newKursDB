@@ -14,14 +14,6 @@
             <Setter Property="Button.Height" Value= "20" />
             <Setter Property="Button.FontFamily" Value="Arial"/>
             <Setter Property="Button.FontSize" Value="14"  />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF6B7EC8" />
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="#FF7784B6" />
-                </Trigger>
-            </Style.Triggers>
         </Style>
         <Style TargetType="Grid" >
             <Setter Property="Grid.Background" Value="#FF1B2646"/>
@@ -57,7 +49,8 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="TheDataGrid"  ItemsSource ="{Binding Path=DT, Mode=TwoWay}"
                    SelectedItem="{Binding SelectedRow}"
-                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" Grid.RowSpan="11" Grid.ColumnSpan="7"/>
+                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True"
+                  Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="5"/>
         <Button Command="{Binding FillCommand}"
             Content="Обновить" Grid.Column="5" VerticalAlignment="Center" Height="20" Grid.Row="11" />
     </Grid>

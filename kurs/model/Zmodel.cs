@@ -111,9 +111,10 @@ namespace kurs.model
         {
             if(!rowForEdit.IsNull("Склад")) 
                 SelectedSklad = Sklad.DefaultView[Sklad.Rows.IndexOf(Sklad.Select("`id_Склад` =" + rowForEdit.Field<int>("Склад"))[0])];
-            if (!rowForEdit.IsNull("Склад"))
+            if (!rowForEdit.IsNull("НП"))
                 SelectedNP = NP.DefaultView[NP.Rows.IndexOf(NP.Select("id_НП =" + rowForEdit.Field<int>("НП"))[0])];
-            Quantity = rowForEdit.Field<int>("Кол-во");
+            if(!rowForEdit.IsNull("Кол-во")) 
+                Quantity = rowForEdit.Field<int>("Кол-во");
         }
     }
 }

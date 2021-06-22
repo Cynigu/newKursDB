@@ -123,7 +123,6 @@ namespace kurs.vm
             }
             if (!ModelTable.CheckDataForEdit()) return;
             DataRow temp = SelectedRow.Row;
-            ModelTable.RowFromTableToModel(temp);
             DataRow newRow = temp;
             ModelTable.RowFromModelToTable(newRow);
         }

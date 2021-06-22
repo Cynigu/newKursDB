@@ -15,6 +15,7 @@ namespace kurs.service
         {
             _connection = connect;
         }
+        //Lizart4567-
         public DBFunction(string connect = "SERVER = localhost;Database=garderob;UID=root; Password=root;  convert zero datetime=True; ")
         {
             _connection = new MySqlConnection(connect);

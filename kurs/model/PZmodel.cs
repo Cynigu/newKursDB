@@ -192,10 +192,96 @@ namespace kurs.model
             DBFunction dbFunc = new DBFunction();
             int count = Quantity;
             int sum = dbFunc.CallFuncCamputeSum(query, idNP, count);
+            sum += ComputeSumPeriodOj();
             TimeSpan t = TimeSpan.FromMinutes(sum);
             DateEnd = DateStart + t;
         }
+        public int ComputeSumPeriodOj()
+        {
+            DataTable DT = new DataTable();
+            DT.Columns.Add("id_НП").DataType = Type.GetType("System.Int32");
+            DT.Columns.Add("Кол-во (план)").DataType = Type.GetType("System.Int32"); 
 
+            // Таблица нп
+            DB _dBNP;
+            string commandFillNP = "select * from нп";
+            DataTable NP1 = new DataTable();
+            _dBNP = new DB(NP1);
+            _dBNP.AddCommandSelectTable(commandFillNP);
+            _dBNP.FillTable();
+            // Таблица компонентов
+            DB _dBKOM;
+            string commandFillKOM = "select * from компонент";
+            DataTable KOM = new DataTable();
+            _dBKOM = new DB(KOM);
+            _dBKOM.AddCommandSelectTable(commandFillKOM);
+            _dBKOM.FillTable();
+
+            int idBaseNP = SelectedNP.Row.Field<int>("id_НП");
+            int idBaseCp = NP1.Select("id_НП = " + idBaseNP)[0].Field<int>("Спецификация");
+            List<List<int>> idCP = new List<List<int>>();
+            List<int> checkCP = new List<int>();
+            checkCP.Add(idBaseCp);
+
+            idCP.Add(new List<int>());
+            idCP[0].Add(idBaseCp);
+            idCP[0].Add(Quantity);
+            while (idCP.Count != 0)
+            {
+                foreach (DataRow drkom in KOM.Select("Спецификация =" + idCP[0][0]))
+                {
+                    DataRow dr = DT.NewRow();
+
+                    dr["id_НП"] = drkom.Field<int>("НП");
+                    dr["Кол-во (план)"] = drkom.Field<int>("Кол-во") * idCP[0][1];
+
+                    int idnp = drkom.Field<int>("НП");
+                    if (!NP1.Select("id_НП =" + idnp)[0].IsNull("Спецификация"))
+                    {
+                        int idcp = NP1.Select("id_НП =" + idnp)[0].Field<int>("Спецификация");
+                        if (checkCP.Contains(idcp))
+                        {
+                            MessageBox.Show("НП данного заказа имеет некорректную спецификацию");
+                            return 0;
+                        }
+                        else checkCP.Add(idcp);
+                        idCP.Add(new List<int>());
+                        idCP[idCP.Count - 1].Add(idcp);
+                        idCP[idCP.Count - 1].Add(idCP[0][1] * drkom.Field<int>("Кол-во"));
+                    }
+                    string sel = "id_НП =" + idnp;
+                    if (DT.Select(sel).Length > 0)
+                    {
+                        DT.Select(sel)[0]["Кол-во (план)"] = DT.Select(sel)[0].Field<int>("Кол-во (план)")
+                            + dr.Field<int>("Кол-во (план)");
+                    }
+                    else DT.Rows.Add(dr);
+                }
+                idCP.RemoveAt(0);
+            }
+
+            // Таблица запасов
+            DB _dBZ;
+            string commandFillZ = "select * from запас";
+            DataTable Z = new DataTable();
+            _dBZ = new DB(Z);
+            _dBZ.AddCommandSelectTable(commandFillZ);
+            _dBZ.FillTable();
+
+            int sum = 0;
+            for (int i =0; i < DT.Rows.Count; i++)
+            {
+                int np = DT.Rows[i].Field<int>("id_НП");
+                string sel = "id_НП =" + np + " and Метод_возобновления = 1";
+
+                if (DT.Rows[i].Field<int>("Кол-во (план)") > Z.Select("НП =" + np.ToString())[0].Field<int>("Кол-во")
+                    && NP1.Select(sel).Length > 0)
+                {
+                    sum += NP1.Select("id_НП =" + np)[0].Field<int>("Период_ожидания");
+                }
+            }
+            return sum;
+        }
         public bool CheckDataForEdit()
         {
             if (SelectedNP == null)

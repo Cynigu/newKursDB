@@ -118,7 +118,7 @@ namespace kurs.vm
                     if (DT.Select(sel).Length > 0)
                     {
                         DT.Select(sel)[0]["Кол-во (план)"] = DT.Select(sel)[0].Field<int>("Кол-во (план)") 
-                            +dr.Field<int>("Кол-во (план)");
+                            + dr.Field<int>("Кол-во (план)");
                     }
                     else DT.Rows.Add(dr);
                 }

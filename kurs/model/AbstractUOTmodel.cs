@@ -116,14 +116,14 @@ namespace kurs.model
 
         public virtual void RowFromTableToModel(DataRow rowForEdit)
         {
-            if (!rowForEdit.IsNull("id_Операция"))
+            if (!rowForEdit.IsNull("id_НП"))
             {
-                int m = int.Parse(rowForEdit["id_Операция"].ToString());
-                SelectedNP = NP.DefaultView[NP.Rows.IndexOf(NP.Select("id_Операция =" + m)[0])];
+                int m = int.Parse(rowForEdit["id_НП"].ToString());
+                SelectedNP = NP.DefaultView[NP.Rows.IndexOf(NP.Select("id_НП =" + m)[0])];
             }
-            if (!rowForEdit.IsNull("факт (мин)"))
+            if (!rowForEdit.IsNull("Кол-во (факт)"))
             {
-                QFact = int.Parse(rowForEdit["факт (мин)"].ToString());
+                QFact = int.Parse(rowForEdit["Кол-во (факт)"].ToString());
             }
         }
 

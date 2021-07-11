@@ -1,4 +1,6 @@
-﻿using kurs.model;
+﻿using Autofac;
+using kurs.model;
+using kurs.service;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -30,7 +32,10 @@ namespace kurs.vm
 
         public override void InizialistModel()
         {
-            UOTpotrModel = new UOTPOTRmodel(_idPZ, _qPZ);
+            var b = Container.ContainerUOTPOTR();
+            var con = b.Build();
+            UOTpotrModel = con.Resolve<UOTPOTRmodel>(new NamedParameter("p1", _idPZ), new NamedParameter("p2", _qPZ));
+            //UOTpotrModel = new UOTPOTRmodel(_idPZ, _qPZ);
             ModelTable = UOTpotrModel;
         }
         #endregion

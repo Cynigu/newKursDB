@@ -1,5 +1,7 @@
-﻿using kurs.model;
+﻿using Autofac;
+using kurs.model;
 using kurs.models;
+using kurs.service;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -34,12 +36,20 @@ namespace kurs.vm
 
         public override void InizialistModel()
         {
-            UOTgpModel = new UOTGPmodel(_idPZ, _qPZ);
+            var b = Container.ContainerUOTGP();
+            var con = b.Build();
+            UOTgpModel = con.Resolve<UOTGPmodel>(new NamedParameter("p1", _idPZ), new NamedParameter("p2", _qPZ));
+            //UOTgpModel = con.Resolve<UOTGPmodel>();
+            //UOTgpModel = new UOTGPmodel(_idPZ, _qPZ);
             ModelTable = UOTgpModel;
         }
 
         public override void GenerateTable()
         {
+            var b = Container.ContainerUOTGenerate();
+            var con = b.Build();
+
+            
             DT.AcceptChanges();
             foreach (DataRow dr in DT.Rows)
             {
@@ -54,25 +64,25 @@ namespace kurs.vm
             }
 
             // Таблица нп
-            DB _dBNP;
+            IDB _dBNP;
             string commandFillNP = "select * from нп";
             DataTable NP1 = new DataTable();
-            _dBNP = new DB(NP1);
+            _dBNP = con.Resolve<IDB>(new NamedParameter("p1", NP1));
             _dBNP.AddCommandSelectTable(commandFillNP);
             _dBNP.FillTable();
-
+            
             // Таблица компонентов
-            DB _dBKOM;
+            IDB _dBKOM;
             string commandFillKOM = "select * from компонент";
             DataTable KOM = new DataTable();
-            _dBKOM = new DB(KOM);
+            _dBKOM = con.Resolve<IDB>(new NamedParameter("p1", KOM));
             _dBKOM.AddCommandSelectTable(commandFillKOM);
             _dBKOM.FillTable();
             // Таблица пз
-            DB _dBPZ;
+            IDB _dBPZ;
             string commandFillPZ = "select * from пз where id_ПЗ =" + _idPZ;
             DataTable PZ = new DataTable();
-            _dBPZ = new DB(PZ);
+            _dBPZ = con.Resolve<IDB>(new NamedParameter("p1", PZ));
             _dBPZ.AddCommandSelectTable(commandFillPZ);
             _dBPZ.FillTable();
 

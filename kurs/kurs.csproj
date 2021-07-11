@@ -150,9 +150,9 @@
     <Compile Include="model\UOTGPmodel.cs" />
     <Compile Include="model\UOTPOTRmodel.cs" />
     <Compile Include="model\Zmodel.cs" />
+    <Compile Include="service\Container.cs" />
     <Compile Include="service\DB.cs" />
     <Compile Include="service\DBFunction.cs" />
-    <Compile Include="service\ForComboBox.cs" />
     <Compile Include="service\IDB.cs" />
     <Compile Include="view\uservontrol\UserControlTableBase.xaml.cs">
       <DependentUpon>UserControlTableBase.xaml</DependentUpon>

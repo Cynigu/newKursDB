@@ -1,4 +1,6 @@
-﻿using kurs.model;
+﻿using Autofac;
+using kurs.model;
+using kurs.service;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,9 @@ namespace kurs.vm
         }
         public override void InizialistModel()
         {
-            ZModel = new Zmodel();
+            var build = Container.ContainerZapas();
+            var con = build.Build();
+            ZModel = con.Resolve<Zmodel>();
             ModelTable = ZModel;
         }
     }

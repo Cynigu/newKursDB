@@ -15,18 +15,11 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowRC.xaml
+    /// Логика взаимодействия для WindowSklad.xaml
     /// </summary>
-    public partial class WindowRC : Window
+    public partial class WindowSklad : Window
     {
-        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!(Char.IsDigit(e.Text, 0)))
-            {
-                e.Handled = true;
-            }
-        }
-        public WindowRC()
+        public WindowSklad()
         {
             InitializeComponent();
         }

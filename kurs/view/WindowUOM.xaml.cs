@@ -15,20 +15,21 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowRC.xaml
+    /// Логика взаимодействия для WindowUOM.xaml
     /// </summary>
-    public partial class WindowRC : Window
+    public partial class WindowUOM : Window
     {
-        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        public WindowUOM()
+        {
+            InitializeComponent();
+        }
+
+        private void UnitM_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!(Char.IsDigit(e.Text, 0)))
             {
                 e.Handled = true;
             }
-        }
-        public WindowRC()
-        {
-            InitializeComponent();
         }
     }
 }

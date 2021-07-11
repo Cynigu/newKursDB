@@ -24,7 +24,8 @@ namespace kurs.models
 
         #region Constructors
         //string connect = "SERVER = localhost;Database=kursdb;UID=root; Password=root;  convert zero datetime=True; "
-        public DB(DataTable DT, string connect = "SERVER = localhost;Database=kursdb;UID=root; Password=root;  convert zero datetime=True; ")
+        // Lizart4567-
+        public DB(DataTable DT, string connect = "SERVER = localhost;Database=garderob;UID=root; Password=root;  convert zero datetime=True; ")
         {
             _connection = new MySqlConnection(connect);
             _adapter = new MySqlDataAdapter();
@@ -40,23 +41,19 @@ namespace kurs.models
         public void AddCommandTable(string SelectText)
         {
             MySqlCommand myCommand = new MySqlCommand(SelectText, _connection);
-            //MySqlDataAdapter adapter = new MySqlDataAdapter(myCommand);
             MySqlCommandBuilder commandB = new MySqlCommandBuilder(_adapter);
             _adapter.SelectCommand = myCommand;
             _adapter.DeleteCommand = commandB.GetDeleteCommand();
             _adapter.UpdateCommand = commandB.GetUpdateCommand();
             _adapter.InsertCommand = commandB.GetInsertCommand();
-            //adapter.(DT);
         }
 
         // Добавление таблицы и инициализация запроса select
         public void AddCommandSelectTable(string SelectText)
         {
             MySqlCommand myCommand = new MySqlCommand(SelectText, _connection);
-            //MySqlDataAdapter adapter = new MySqlDataAdapter(myCommand);
             MySqlCommandBuilder commandB = new MySqlCommandBuilder(_adapter);
             _adapter.SelectCommand = myCommand;
-            //adapter.(DT);
         }
 
         

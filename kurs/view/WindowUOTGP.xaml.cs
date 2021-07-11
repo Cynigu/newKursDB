@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowRC.xaml
+    /// Логика взаимодействия для WindowUOTGP.xaml
     /// </summary>
-    public partial class WindowRC : Window
+    public partial class WindowUOTGP : Window
     {
-        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void UnitM_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!(Char.IsDigit(e.Text, 0)))
             {
                 e.Handled = true;
             }
         }
-        public WindowRC()
+        public WindowUOTGP()
         {
             InitializeComponent();
         }

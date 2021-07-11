@@ -5,45 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kurs.view"
         mc:Ignorable="d"
-        Title="Запас" Height="404.4" Width="327.2" WindowStartupLocation="CenterScreen">
+        Title="{Binding TableName}" Height="400" Width="1058" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="TextBox.Height" Value= "23" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Button.Background" Value= "#FF374785" />
+            <Setter Property="Button.Foreground" Value="#FFFFF8F0"/>
+            <Setter Property="Button.BorderBrush" Value= "#FF151537" />
+            <Setter Property="Button.Height" Value= "25" />
+            <Setter Property="Button.FontFamily" Value="Arial"/>
+            <Setter Property="Button.FontSize" Value="14"  />
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="TextBlock.Foreground" Value="#FFFFF8F0"/>
+            <Setter Property="TextBlock.Height" Value= "20" />
+            <Setter Property="TextBlock.FontFamily" Value="Arial"/>
+            <Setter Property="TextBlock.FontSize" Value="14"  />
+        </Style>
+
+        <Style TargetType="Grid" >
+            <Setter Property="Grid.Background" Value="#FF1B2646"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="DataGrid.Background" Value="#FF7668A5"/>
+            <Setter Property="DataGrid.BorderBrush" Value="#FF45396E"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="22*"/>
             <RowDefinition Height="30*"/>
-            <RowDefinition Height="46*"/>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="199*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="22*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="21*"/>
-            <ColumnDefinition Width="173*"/>
-            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="170*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="170*"/>
+            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="TheDataGrid"  ItemsSource ="{Binding Path=DT, Mode=TwoWay}"
-                  AutoGenerateColumns="False" SelectedItem="{Binding SelectedRow}"
-                  CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True"
-                  Grid.Column="1"  Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="3">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id Склада" Binding="{Binding Склад}"/>
-                <DataGridTextColumn Header="Id НП" Binding="{Binding НП}"/>
-                <DataGridTextColumn Header="Кол-во" Binding="{Binding Кол-во}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Command="{Binding EditCommand}"
-                Visibility="{Binding Visibility}"
-            Content="Редактировать" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center"  Grid.Column="1"/>
-        <Button Command="{Binding AddCommand}" Visibility="{Binding Visibility}"
-            Content="Добавить" Grid.Column="2" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Width="75"/>
-        <Button Command="{Binding DeleteRowCommand}" Visibility="{Binding Visibility}"
-            Content="Удалить" Grid.Column="3" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Width="75" Height="18"/>
-        <Button Command="{Binding CancelChangeCommand}"
-            Content="Отменить" Grid.Column="3" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" Width="75"/>
-        <Button Command="{Binding UpdateCommand}"
-            Content="Сохранить" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Width="75"/>
+        <local:UserControlTableBaseWithEdit x:Name = "UserControlTableBaseWithEdit" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="12" />
+        <Button Command="{Binding ExportDataFromRowToEdit}" IsEnabled="{Binding EnDataEnd}"
+            Content="Перенести данные из выбранной строки" Grid.Column="5"  Grid.Row="4" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+        <ComboBox ItemsSource="{Binding ZModel.Sklad}"
+            DisplayMemberPath ="id_Склад"
+            SelectedItem="{Binding ZModel.SelectedSklad}"
+            Grid.Column="6" Grid.Row="1" VerticalAlignment="Center"  />
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap"
+                   Text="Склад:" VerticalAlignment="Center"/>
+        <TextBox x:Name="Kdokaz" Grid.Column="6" Height="24" TextWrapping="Wrap" 
+            PreviewTextInput="Kdokaz_PreviewTextInput"
+            Text="{Binding ZModel.Quantity}" VerticalAlignment="Center" Grid.Row="3" />
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" Text="Кол-во:" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding ZModel.NP}"
+            DisplayMemberPath ="id_НП"
+            SelectedItem="{Binding ZModel.SelectedNP}"
+            Grid.Column="6" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" 
+                   Text="НП:" VerticalAlignment="Center" />
     </Grid>
 </Window>

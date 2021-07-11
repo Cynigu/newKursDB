@@ -10,23 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowRC.xaml
+    /// Логика взаимодействия для UserControlTableBaseWithOnlyEdit.xaml
     /// </summary>
-    public partial class WindowRC : Window
+    public partial class UserControlTableBaseWithOnlyEdit : UserControl
     {
-        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!(Char.IsDigit(e.Text, 0)))
-            {
-                e.Handled = true;
-            }
-        }
-        public WindowRC()
+        public UserControlTableBaseWithOnlyEdit()
         {
             InitializeComponent();
         }

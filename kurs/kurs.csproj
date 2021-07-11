@@ -137,84 +137,168 @@
     <Compile Include="commands\AsyncCommandBase.cs" />
     <Compile Include="commands\IAsyncCommand.cs" />
     <Compile Include="commands\RelayCommand.cs" />
+    <Compile Include="model\CPmodel.cs" />
+    <Compile Include="model\ImodelTable.cs" />
+    <Compile Include="model\KOMmodel.cs" />
+    <Compile Include="model\MKmodel.cs" />
+    <Compile Include="model\NPmodel.cs" />
+    <Compile Include="model\OPmodel.cs" />
+    <Compile Include="model\PZmodel.cs" />
+    <Compile Include="model\RCmodel.cs" />
+    <Compile Include="model\UOMmodel.cs" />
+    <Compile Include="model\AbstractUOTmodel.cs" />
+    <Compile Include="model\UOTGPmodel.cs" />
+    <Compile Include="model\UOTPOTRmodel.cs" />
+    <Compile Include="model\Zmodel.cs" />
+    <Compile Include="service\Container.cs" />
     <Compile Include="service\DB.cs" />
     <Compile Include="service\DBFunction.cs" />
-    <Compile Include="service\ForComboBox.cs" />
     <Compile Include="service\IDB.cs" />
-    <Compile Include="view\EditAddUOT.xaml.cs">
-      <DependentUpon>EditAddUOT.xaml</DependentUpon>
+    <Compile Include="view\uservontrol\UserControlTableBase.xaml.cs">
+      <DependentUpon>UserControlTableBase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditCP.xaml.cs">
-      <DependentUpon>EditCP.xaml</DependentUpon>
+    <Compile Include="view\uservontrol\UserControlTableBaseEditOpen.xaml.cs">
+      <DependentUpon>UserControlTableBaseEditOpen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditNP.xaml.cs">
-      <DependentUpon>EditNP.xaml</DependentUpon>
+    <Compile Include="view\uservontrol\UserControlTableBaseOpen.xaml.cs">
+      <DependentUpon>UserControlTableBaseOpen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditKom.xaml.cs">
-      <DependentUpon>EditKom.xaml</DependentUpon>
+    <Compile Include="view\uservontrol\UserControlTableBaseWithEdit.xaml.cs">
+      <DependentUpon>UserControlTableBaseWithEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditPZ.xaml.cs">
-      <DependentUpon>EditPZ.xaml</DependentUpon>
+    <Compile Include="view\uservontrol\UserControlTableBaseWithOnlyEdit.xaml.cs">
+      <DependentUpon>UserControlTableBaseWithOnlyEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditRC.xaml.cs">
-      <DependentUpon>EditRC.xaml</DependentUpon>
+    <Compile Include="view\WindowCP.xaml.cs">
+      <DependentUpon>WindowCP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\EditUOM.xaml.cs">
-      <DependentUpon>EditUOM.xaml</DependentUpon>
+    <Compile Include="view\WindowKOM.xaml.cs">
+      <DependentUpon>WindowKOM.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\WindowUniversalTable.xaml.cs">
-      <DependentUpon>WindowUniversalTable.xaml</DependentUpon>
+    <Compile Include="view\WindowMK.xaml.cs">
+      <DependentUpon>WindowMK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowNP.xaml.cs">
+      <DependentUpon>WindowNP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowOP.xaml.cs">
+      <DependentUpon>WindowOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowPZwithEditAndUO.xaml.cs">
+      <DependentUpon>WindowPZ.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Tables.xaml.cs">
       <DependentUpon>Tables.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vm\ViewModelEditAddBase.cs" />
-    <Compile Include="vm\ViewModelEditAddUOT.cs" />
-    <Compile Include="vm\ViewModelEditCP.cs" />
-    <Compile Include="vm\ViewModelEditNP.cs" />
-    <Compile Include="vm\ViewModelEditKom.cs" />
-    <Compile Include="vm\ViewModelEditUOM.cs" />
-    <Compile Include="vm\ViewModelEditRC.cs" />
-    <Compile Include="vm\ViewModelEditPZ.cs" />
-    <Compile Include="vm\ViewModelTableBase.cs" />
+    <Compile Include="view\WindowRC.xaml.cs">
+      <DependentUpon>WindowRC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowSklad.xaml.cs">
+      <DependentUpon>WindowSklad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowUOM.xaml.cs">
+      <DependentUpon>WindowUOM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowUOTGP.xaml.cs">
+      <DependentUpon>WindowUOTGP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowUOTPOTR.xaml.cs">
+      <DependentUpon>WindowUOTPOTR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\WindowZapas.xaml.cs">
+      <DependentUpon>WindowZapas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vm\abstract\AbstractViewModelTableBase.cs" />
+    <Compile Include="vm\abstract\AbstractViewModelTableBaseWithEdit.cs" />
+    <Compile Include="vm\abstract\AbstractViewModelTableBaseWithEditAndOpen.cs" />
+    <Compile Include="vm\abstract\AbstractViewModelTableBaseWithOpen.cs" />
+    <Compile Include="vm\ViewModelTableCP.cs" />
+    <Compile Include="vm\ViewModelTableKOM.cs" />
+    <Compile Include="vm\ViewModelTableOP.cs" />
+    <Compile Include="vm\ViewModelTableMK.cs" />
+    <Compile Include="vm\ViewModelTableNP.cs" />
+    <Compile Include="vm\ViewModelTablePZ.cs" />
+    <Compile Include="vm\ViewModelTableRC.cs" />
     <Compile Include="vm\ViewModelTables.cs" />
-    <Page Include="view\EditAddUOT.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditCP.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditNP.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditKom.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditPZ.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditRC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\EditUOM.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="vm\ViewModelTableSklad.cs" />
+    <Compile Include="vm\ViewModelTableUOM.cs" />
+    <Compile Include="vm\abstract\AbstractViewModelTableUOT.cs" />
+    <Compile Include="vm\ViewModelTableUOTGP.cs" />
+    <Compile Include="vm\ViewModelTableUOTPOTR.cs" />
+    <Compile Include="vm\ViewModelTableZapas.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="view\WindowUniversalTable.xaml">
+    <Page Include="view\uservontrol\UserControlTableBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\uservontrol\UserControlTableBaseEditOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\uservontrol\UserControlTableBaseOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\uservontrol\UserControlTableBaseWithEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\uservontrol\UserControlTableBaseWithOnlyEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowCP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowKOM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowMK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowNP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowPZ.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Tables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowRC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowSklad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowUOM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowUOTGP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowUOTPOTR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WindowZapas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

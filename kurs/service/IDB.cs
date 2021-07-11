@@ -10,6 +10,7 @@ namespace kurs.models
 {
     interface IDB
     {
+        
         void AddCommandTable(string SelectText);
         void AddCommandSelectTable(string SelectText);
         Task FillTableAsync();

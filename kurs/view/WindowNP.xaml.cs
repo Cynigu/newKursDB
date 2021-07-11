@@ -15,10 +15,22 @@ using System.Windows.Shapes;
 namespace kurs.view
 {
     /// <summary>
-    /// Логика взаимодействия для WindowZapas.xaml
+    /// Логика взаимодействия для WindowNP.xaml
     /// </summary>
-    public partial class WindowZapas : Window
+    public partial class WindowNP : Window
     {
+        public WindowNP()
+        {
+            InitializeComponent();
+        }
+
+        private void Tdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
+            {
+                e.Handled = true;
+            }
+        }
         private void Kdokaz_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!(Char.IsDigit(e.Text, 0)))
@@ -26,9 +38,12 @@ namespace kurs.view
                 e.Handled = true;
             }
         }
-        public WindowZapas()
+        private void Period_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            InitializeComponent();
+            if (!(Char.IsDigit(e.Text, 0)))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

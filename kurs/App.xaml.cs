@@ -29,16 +29,17 @@ namespace kurs
         {
             logger.Info("Запуск приложения...");
             var builderBase = new ContainerBuilder();
-            builderBase.RegisterType<DB>().As<IDB>();
+            //builderBase.RegisterType<DB>().As<IDB>();
             builderBase.RegisterType<ViewModelTables>().AsSelf();
             var containerBase = builderBase.Build();
             var viewmodelBase = containerBase.Resolve<ViewModelTables>();
             var viewBase = new Tables { DataContext = viewmodelBase };
             viewBase.Show();
         }
+
         void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Иселючение");
+            MessageBox.Show("Исключение");
             logger.Fatal(e.Exception.StackTrace + " " + "Исключение: "
                 + e.Exception.GetType().ToString() + " " + e.Exception.Message);
 

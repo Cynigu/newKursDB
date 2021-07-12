@@ -52,7 +52,6 @@ namespace kurs.models
         public void AddCommandSelectTable(string SelectText)
         {
             MySqlCommand myCommand = new MySqlCommand(SelectText, _connection);
-            MySqlCommandBuilder commandB = new MySqlCommandBuilder(_adapter);
             _adapter.SelectCommand = myCommand;
         }
 

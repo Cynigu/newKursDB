@@ -39,8 +39,7 @@ namespace kurs.vm
             var b = Container.ContainerUOTGP();
             var con = b.Build();
             UOTgpModel = con.Resolve<UOTGPmodel>(new NamedParameter("p1", _idPZ), new NamedParameter("p2", _qPZ));
-            //UOTgpModel = con.Resolve<UOTGPmodel>();
-            //UOTgpModel = new UOTGPmodel(_idPZ, _qPZ);
+
             ModelTable = UOTgpModel;
         }
 
